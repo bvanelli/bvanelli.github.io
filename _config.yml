@@ -1,0 +1,8 @@
+excerpt_separator: ""
+pygments: true
+markdown: kramdown
+url: http://bvanelli.github.io
+title: /dev/null
+tagline: Um tutorial compreensivo de como falhar miseravelmente.
+description: My awesome new site
+paginate: 10
