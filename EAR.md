@@ -4,21 +4,25 @@ title: E.A.R.
 ---
 
 <p class="message">
-  E.A.R - Escola de AutomaÁ„o e RobÛtica: Popularizando o desenvolvimento de SoluÁıes de AutomaÁ„o e RobÛtica de Baixo Custo AtravÈs da Plataforma de Hardware Livre Arduino.
+  E.A.R - Escola de Automa√ß√£o e Rob√≥tica: Popularizando o desenvolvimento de Solu√ß√µes de Automa√ß√£o e Rob√≥tica de Baixo Custo Atrav√©s da Plataforma de Hardware Livre Arduino.
 </p>
 
-O foco principal da E.A.R. È a popularizaÁ„o da robÛtica e automaÁ„o atravÈs da adoÁ„o da plataforma Arduino (placa de prototipagem de baixo custo e *hardware* e *software* livre e *open-source*). O Arduino apresenta diversas vantagens por possuir in˙meros colaboradores ao redor do mundo e interface amig·veis para usu·rios com pouco ou nenhum conhecimento na ·rea de eletrÙnica e computaÁ„o.
+O foco principal da E.A.R. √© a populariza√ß√£o da rob√≥tica e automa√ß√£o atrav√©s da ado√ß√£o da plataforma Arduino (placa de prototipagem de baixo custo e *hardware* e *software* livre e *open-source*). O Arduino apresenta diversas vantagens por possuir in√∫meros colaboradores ao redor do mundo e interface amig√°veis para usu√°rios com pouco ou nenhum conhecimento na √°rea de eletr√¥nica e computa√ß√£o.
 
 ### [Baixe a IDE do Arduino](https://www.arduino.cc/en/Main/Software)
 
 ## Materiais do Minicurso
 
-Os slides do Minicurso IntrodutÛrio de Arduino, bem como os sketches utilizados est„o disponibilizados no Github.
+Os slides do Minicurso Introdut√≥rio de Arduino, bem como os sketches utilizados est√£o disponibilizados no Github.
 
 * [Baixe os slides](https://github.com/bvanelli/eAR/raw/master/Slides/Minicurso%20Arduino.pdf)
-* [Visite a p·gina no Github](https://github.com/bvanelli/eAR/tree/master/Slides)
+* [Visite a p√°gina no Github](https://github.com/bvanelli/eAR/tree/master/Slides)
 
 ![minicurso1](https://cloud.githubusercontent.com/assets/8211602/17445939/64a165ac-5b1d-11e6-90ab-46882daaf4d3.png)
 ![minicurso2](https://cloud.githubusercontent.com/assets/8211602/17445938/6473252a-5b1d-11e6-8464-b1d1a23b108a.png)
 
 Quer contribuir? [Sugira uma melhoria](https://github.com/bvanelli/eAR/issues/new)
+
+## Licen√ßa
+
+O projeto E.A.R. utiliza a licen√ßa Creative Commons Attribution-ShareAlike 4.0 International Public License.
