@@ -9,11 +9,24 @@ layout: post
 
 ----------
 
-[TOC]
+- [Instalando o LaTeX](#)
+	- [Windows](#)
+	- [Linux](#)
+- [Primeiro Documento](#)
+- [Escrevendo Equações](#)
+- [Títulos, Subtítulos e Referências Cruzadas](#)
+- [Sumário](#)
+- [Inserindo Imagens](#)
+	- [Imagens Simples](#)
+	- [Imagens Lado a Lado](#)
+	- [Organizando uma pasta de imagens](#)
+- [Formatação](#)
+- [Tabelas](#)
+- [Exemplo](#)
 
 ---------
 
-O \( \LaTeX \) (pronunciado "*Lah-tek*'') é uma ferramenta de preparação de textos de alta qualidade usado normalmente na publicação de trabalhos técnicos e científicos. O objetivo do $\LaTeX$ não é ser uma ferramenta de processamento de textos gráfica, mas sim uma linguagem onde o usuário se foca apenas em escrever, e deixa o programa lidar com os estilos dos títulos, subtítulos, referências, etc.
+O \( x^2 \) (pronunciado "*Lah-tek*'') é uma ferramenta de preparação de textos de alta qualidade usado normalmente na publicação de trabalhos técnicos e científicos. O objetivo do $\LaTeX$ não é ser uma ferramenta de processamento de textos gráfica, mas sim uma linguagem onde o usuário se foca apenas em escrever, e deixa o programa lidar com os estilos dos títulos, subtítulos, referências, etc.
 
 > **Pontos Positivos:**
 >
@@ -189,7 +202,7 @@ Usar a variável `\textwidth` para dimensionamento das imagens é interessante p
 
 Você deve ter notado o parâmetro `[!h]` no ambiente `figure`. Isso indica ao $\LaTeX$ para *tentar* inserir a figura no local onde ela é chamada no texto. Caso isso não seja possível, o compilador irá deslocar a imagem para um local apropriado para não interromper o fluxo do texto. Outros parâmetros que podem ser utilizados são `b` (bottom), `t` (top). O caractere `!`indica que algumas restrições de posicionamento podem ser  ignoradas.
 
-###Imagens Lado a Lado
+### Imagens Lado a Lado
 
 Para adiciona imagens lado a lado, basta criar duas minipages e colocar uma imagem em cada. Para tal, pode-se usar a sequência de comandos:
 
@@ -217,7 +230,7 @@ Para adicionar imagens no texto, o arquivo deve estar localizado na pasta raiz d
 \graphicspath{{./figuras/}}
 ```
 
-##Formatação
+## Formatação
 
 Para formação do texto, pode-se usar funções como negrito, itálico e outros efeitos.
 
