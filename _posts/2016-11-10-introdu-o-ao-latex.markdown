@@ -54,7 +54,7 @@ Se seu sistema operacional for **Linux**, você vai precisar dos pacotes `texliv
 
 Um documento básico em LaTeX vai parecer algo do tipo:
 
-```Latex
+```TeX
 % Início do documento
 \documentclass[11pt]{article}
 
@@ -67,21 +67,21 @@ Essas linhas de código iniciam um documento do tipo artigo com fonte de tamanho
 
 No entanto surgem alguns problemas com essa implementação, como o uso de acentos na Língua Portuguesa. Para isso serão utilizados mais três pacotes, o pacote [Babel](https://www.ctan.org/pkg/babel) cuida das especificidades e regras de determinada linguagem, o pacote [Inputenc](https://www.ctan.org/pkg/inputenc) cuida da codificação de entrada, como os acentos, (UTF-8) e o pacote [Fontenc](https://www.ctan.org/pkg/fontenc) da codificação de saída.
 
-```Latex
+```TeX
 \usepackage[brazilian]{babel} % Idioma Português-Brasil
 \usepackage[utf8]{inputenc}   % Codificação de Entrada
 \usepackage[T1]{fontenc}      % Codificação de Saída
 ```
 Por último, adiciona-se os pacotes normalmente utilizados, como o [Fullpage](https://www.ctan.org/pkg/fullpage), que altera o tamanho das bordas para dar mais espaço ao texto, [Indentfirst](https://www.ctan.org/pkg/indentfirst), que cria um novo parágrafo a cada nova linha e o pacote [Graphicx](https://www.ctan.org/pkg/graphicx) que permite adicionar imagens.
 
-```Latex
+```TeX
 \usepackage{fullpage}      % Melhor uso da página
 \usepackage{indentfirst}   % Autoidentar
 \usepackage{graphicx}      % Importar figuras
 ```
 O documento básico resultante deve ser da seguinte forma:
 
-```Latex
+```TeX
 %Início do documento
 \documentclass[11pt]{article}
 
@@ -141,7 +141,7 @@ $$ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \f
 
 Uma das vantagens do LaTeX é a facilidade com a criação de seções, subseções e subsubseções. Para isso basta chamar o comando equivalente:
 
-```Latex
+```TeX
 \section{Seção 1}
 \subsection{Subseção 1}
 \subsubsection{Subsubseção 1}
@@ -154,7 +154,7 @@ O resultado é numerado automaticamente. Cada vez que um comando com numeração
 
 Para isso, utiliza-se o comando `\label{nome}` logo após criar a numeração. Para chamar a referência, basta usar o comando `\ref{nome}` Por exemplo:
 
-```Latex
+```TeX
 \section{Introdução} \label{sec:introducao}
 
 Esta é a introdução. A Seção \ref{sec:desenvolvimento} tratará do desenvolvimento.
@@ -174,7 +174,7 @@ INSERIR IMAGEM
 
 A geração do sumário é simplificada utilizando o LaTeX. Para isso, basta utilizar o comando `\tableofcontents`. Para deixar o sumário em sua página própria, basta usar:
 
-```Latex
+```TeX
 \newpage
 \tableofcontents
 \newpage
@@ -186,7 +186,7 @@ A geração do sumário é simplificada utilizando o LaTeX. Para isso, basta uti
 
 Inserir imagens no LaTeX pode parecer uma tarefa árdua a princípio, já que elas são incluídas no código. Para isso, basta usar o comando `\includegraphics`. É recomendado usar um ambiente `figure` para isso. A seguir, há um exemplo de inserção de imagem. 
 
-```Latex
+```TeX
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\textwidth]{imagem.png}
@@ -206,7 +206,7 @@ Você deve ter notado o parâmetro `[!h]` no ambiente `figure`. Isso indica ao L
 
 Para adiciona imagens lado a lado, basta criar duas minipages e colocar uma imagem em cada. Para tal, pode-se usar a sequência de comandos:
 
-```Latex
+```TeX
 \begin{figure}[!h]
   \centering
   \begin{minipage}[b]{0.45\textwidth}
@@ -226,7 +226,7 @@ Para adiciona imagens lado a lado, basta criar duas minipages e colocar uma imag
 
 Para adicionar imagens no texto, o arquivo deve estar localizado na pasta raiz do projeto (na mesma pasta do documento). No entanto, é mais útil e organizado criar uma pasta separada somente para imagens. Para adicionar a pasta `figuras`, basta usar o seguinte comando no preâmbulo.
 
-```Latex
+```TeX
 \graphicspath{{./figuras/}}
 ```
 
@@ -248,12 +248,12 @@ Sublinhado | `\underline{Texto Exemplo}` | <u>Texto Exemplo</u>
 
 As tabelas em LaTeX também podem ser geradas por código. Para tal, basta iniciar um `tabular`. As quebras de linhas são indicadas com o comando `\\`. Para melhorar os traços horizontais na tabela, utiliza-se o pacote [Booktabs](https://www.ctan.org/pkg/booktabs).
 
-```Latex
+```TeX
 \usepackage{booktabs}
 ```
 Para criar uma tabela de três colunas
 
-```Latex
+```TeX
 \begin{table}[!h]
 \renewcommand{\arraystretch}{1.3} % Ajusta espaçamento
 \centering
@@ -283,7 +283,7 @@ Nesse exemplo será construído um documento simples multiuso para trabalhos sim
 
 Você pode [editar esse documento online](https://www.overleaf.com/read/fjnhqxrqfgcg).
 
-```Latex
+```TeX
 \documentclass[11pt]{article}
 
 % Fonte em português brasileiro
