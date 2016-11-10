@@ -5,7 +5,7 @@ layout: post
 ---
 
 
-> Esse é um documento de introdução ao $\LaTeX$. Para ver um exemplo de documento clique aqui
+> Esse é um documento de introdução ao LaTeX. Para ver um exemplo de documento clique aqui
 
 ----------
 
@@ -26,7 +26,7 @@ layout: post
 
 ---------
 
-O \( x^2 \) (pronunciado "*Lah-tek*'') é uma ferramenta de preparação de textos de alta qualidade usado normalmente na publicação de trabalhos técnicos e científicos. O objetivo do $\LaTeX$ não é ser uma ferramenta de processamento de textos gráfica, mas sim uma linguagem onde o usuário se foca apenas em escrever, e deixa o programa lidar com os estilos dos títulos, subtítulos, referências, etc.
+O LaTeX (pronunciado "*Lah-tek*'') é uma ferramenta de preparação de textos de alta qualidade usado normalmente na publicação de trabalhos técnicos e científicos. O objetivo do LaTeX não é ser uma ferramenta de processamento de textos gráfica, mas sim uma linguagem onde o usuário se foca apenas em escrever, e deixa o programa lidar com os estilos dos títulos, subtítulos, referências, etc.
 
 > **Pontos Positivos:**
 >
@@ -52,7 +52,7 @@ Se seu sistema operacional for **Linux**, você vai precisar dos pacotes `texliv
 
 ## Primeiro Documento
 
-Um documento básico em $\LaTeX$ vai parecer algo do tipo:
+Um documento básico em LaTeX vai parecer algo do tipo:
 
 ```Latex
 % Início do documento
@@ -101,7 +101,7 @@ Olá mundo.
 
 ## Escrevendo Equações
 
-Uma das partes fundamentais do $\LaTeX$ é a inserção de equações. Para isso, utiliza-se o ambiente *Mathmode*, indicado pelo caractere cifrão (`$`), onde pode-se escrever equações livremente utilizando a notação habitual. Desse modo, as equações serão inseridas dentro do texto.
+Uma das partes fundamentais do LaTeX é a inserção de equações. Para isso, utiliza-se o ambiente *Mathmode*, indicado pelo caractere cifrão (`$`), onde pode-se escrever equações livremente utilizando a notação habitual. Desse modo, as equações serão inseridas dentro do texto.
 
 Alternativamente, se você quiser que a equação tenha sua linha própria, pode-se dois cifrões  `$$` ou usar o comando `\begin{equation}`, que numerará as equações.
 
@@ -139,7 +139,7 @@ $$ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \f
 
 ## Títulos, Subtítulos e Referências Cruzadas
 
-Uma das vantagens do $\LaTeX$ é a facilidade com a criação de seções, subseções e subsubseções. Para isso basta chamar o comando equivalente:
+Uma das vantagens do LaTeX é a facilidade com a criação de seções, subseções e subsubseções. Para isso basta chamar o comando equivalente:
 
 ```Latex
 \section{Seção 1}
@@ -172,7 +172,7 @@ INSERIR IMAGEM
 
 ## Sumário
 
-A geração do sumário é simplificada utilizando o $\LaTeX$. Para isso, basta utilizar o comando `\tableofcontents`. Para deixar o sumário em sua página própria, basta usar:
+A geração do sumário é simplificada utilizando o LaTeX. Para isso, basta utilizar o comando `\tableofcontents`. Para deixar o sumário em sua página própria, basta usar:
 
 ```Latex
 \newpage
@@ -180,11 +180,11 @@ A geração do sumário é simplificada utilizando o $\LaTeX$. Para isso, basta 
 \newpage
 ```
 
-##Inserindo Imagens
+## Inserindo Imagens
 
 ### Imagens Simples
 
-Inserir imagens no $\LaTeX$ pode parecer uma tarefa árdua a princípio, já que elas são incluídas no código. Para isso, basta usar o comando `\includegraphics`. É recomendado usar um ambiente `figure` para isso. A seguir, há um exemplo de inserção de imagem. 
+Inserir imagens no LaTeX pode parecer uma tarefa árdua a princípio, já que elas são incluídas no código. Para isso, basta usar o comando `\includegraphics`. É recomendado usar um ambiente `figure` para isso. A seguir, há um exemplo de inserção de imagem. 
 
 ```Latex
 \begin{figure}[!h]
@@ -200,7 +200,7 @@ INSERIR IMAGEM
 
 Usar a variável `\textwidth` para dimensionamento das imagens é interessante pois a imagem sempre respeitará as bordas de texto. Pode-se passar como parâmetro tamanhos como `width=1cm` ou `width=2in` para medidas exatas.
 
-Você deve ter notado o parâmetro `[!h]` no ambiente `figure`. Isso indica ao $\LaTeX$ para *tentar* inserir a figura no local onde ela é chamada no texto. Caso isso não seja possível, o compilador irá deslocar a imagem para um local apropriado para não interromper o fluxo do texto. Outros parâmetros que podem ser utilizados são `b` (bottom), `t` (top). O caractere `!`indica que algumas restrições de posicionamento podem ser  ignoradas.
+Você deve ter notado o parâmetro `[!h]` no ambiente `figure`. Isso indica ao LaTeX para *tentar* inserir a figura no local onde ela é chamada no texto. Caso isso não seja possível, o compilador irá deslocar a imagem para um local apropriado para não interromper o fluxo do texto. Outros parâmetros que podem ser utilizados são `b` (bottom), `t` (top). O caractere `!`indica que algumas restrições de posicionamento podem ser  ignoradas.
 
 ### Imagens Lado a Lado
 
@@ -246,7 +246,7 @@ Sublinhado | `\underline{Texto Exemplo}` | <u>Texto Exemplo</u>
 
 ## Tabelas
 
-As tabelas em $\LaTeX$ também podem ser geradas por código. Para tal, basta iniciar um `tabular`. As quebras de linhas são indicadas com o comando `\\`. Para melhorar os traços horizontais na tabela, utiliza-se o pacote [Booktabs](https://www.ctan.org/pkg/booktabs).
+As tabelas em LaTeX também podem ser geradas por código. Para tal, basta iniciar um `tabular`. As quebras de linhas são indicadas com o comando `\\`. Para melhorar os traços horizontais na tabela, utiliza-se o pacote [Booktabs](https://www.ctan.org/pkg/booktabs).
 
 ```Latex
 \usepackage{booktabs}
@@ -279,7 +279,7 @@ INSERIR IMAGEM TABELA
 
 ## Exemplo
 
-Nesse exemplo será construído um documento simples multiuso para trabalhos simples em $\LaTeX$ com os conteúdos abordados nesse documento. 
+Nesse exemplo será construído um documento simples multiuso para trabalhos simples em LaTeX com os conteúdos abordados nesse documento. 
 
 Você pode [editar esse documento online](https://www.overleaf.com/read/fjnhqxrqfgcg).
 
