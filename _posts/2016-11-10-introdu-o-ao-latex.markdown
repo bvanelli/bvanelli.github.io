@@ -3,14 +3,12 @@ published: true
 title: Introdução ao LaTeX
 layout: post
 ---
-#Introdução ao LaTeX
 
-
-----------
 
 > Esse é um documento de introdução ao $\LaTeX$. Para ver um exemplo de documento clique aqui
 
 ----------
+
 [TOC]
 
 ---------
@@ -266,7 +264,7 @@ Irá produzir:
 
 INSERIR IMAGEM TABELA
 
-#Exemplo
+## Exemplo
 
 Nesse exemplo será construído um documento simples multiuso para trabalhos simples em $\LaTeX$ com os conteúdos abordados nesse documento. 
 
