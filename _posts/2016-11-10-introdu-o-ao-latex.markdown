@@ -18,15 +18,15 @@ layout: post
 O $\LaTeX$ (pronunciado "*Lah-tek*'') é uma ferramenta de preparação de textos de alta qualidade usado normalmente na publicação de trabalhos técnicos e científicos. O objetivo do $\LaTeX$ não é ser uma ferramenta de processamento de textos gráfica, mas sim uma linguagem onde o usuário se foca apenas em escrever, e deixa o programa lidar com os estilos dos títulos, subtítulos, referências, etc.
 
 > **Pontos Positivos:**
-
+>
 > - Altamente Customizável.
 > - Produz documentos de alta qualidade.
 > - Melhor controle sobre grandes documentos, como bibliografia, citação de imagens e equações, etc.
 > - Amplo suporte para equações e formulação matemática.
 > - Boa documentação em fóruns como [StackExchange](http://tex.stackexchange.com/).
-
+>
 > **Pontos Negativos:**
-
+>
 > - Curva íngreme de aprendizado nos estágios iniciais.
 > - Códigos de estilo são mais complicados.
 > - A digitação tende a ser mais intuitiva do que visual.
@@ -43,7 +43,7 @@ Se seu sistema operacional for **Linux**, você vai precisar dos pacotes `texliv
 
 Um documento básico em $\LaTeX$ vai parecer algo do tipo:
 
-```TeX
+```Latex
 % Início do documento
 \documentclass[11pt]{article}
 
@@ -56,14 +56,14 @@ Essas linhas de código iniciam um documento do tipo artigo com fonte de tamanho
 
 No entanto surgem alguns problemas com essa implementação, como o uso de acentos na Língua Portuguesa. Para isso serão utilizados mais três pacotes, o pacote [Babel](https://www.ctan.org/pkg/babel) cuida das especificidades e regras de determinada linguagem, o pacote [Inputenc](https://www.ctan.org/pkg/inputenc) cuida da codificação de entrada, como os acentos, (UTF-8) e o pacote [Fontenc](https://www.ctan.org/pkg/fontenc) da codificação de saída.
 
-```TeX
+```Latex
 \usepackage[brazilian]{babel} % Idioma Português-Brasil
 \usepackage[utf8]{inputenc}   % Codificação de Entrada
 \usepackage[T1]{fontenc}      % Codificação de Saída
 ```
 Por último, adiciona-se os pacotes normalmente utilizados, como o [Fullpage](https://www.ctan.org/pkg/fullpage), que altera o tamanho das bordas para dar mais espaço ao texto, [Indentfirst](https://www.ctan.org/pkg/indentfirst), que cria um novo parágrafo a cada nova linha e o pacote [Graphicx](https://www.ctan.org/pkg/graphicx) que permite adicionar imagens.
 
-```TeX
+```Latex
 \usepackage{fullpage}      % Melhor uso da página
 \usepackage{indentfirst}   % Autoidentar
 \usepackage{graphicx}      % Importar figuras
@@ -96,29 +96,29 @@ Alternativamente, se você quiser que a equação tenha sua linha própria, pode
 A seguir há alguns exemplos de uso.
 
 ----------
-<center>`$$E = m c^2$$`</center>
+<center>`$E = m c^2$`</center>
 
 \\[ E = mc^2 \\]
 
 ----------
-<center>`$$E_r = \sqrt{ (m c^2)^2 + (pc)^2 }$$`</center>
+<center>`$E_r = \sqrt{ (m c^2)^2 + (pc)^2 }$`</center>
 
 \\[ E_r = \sqrt{ (m c^2)^2 + (pc)^2 } \\]
 
 
 ----------
-<center>`$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$`</center>
+<center>`$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$`</center>
 
 \\[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\]
 
 ----------
-<center>`$$\int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi}$$`</center>
+<center>`$\int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi}$`</center>
 
 \\[ \int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi} \\]
 
 ----------
 
-`$$\sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty} \left( \frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6}$$`
+<center>`$\sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty} \left( \frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6}$` </center>
 
 \\[ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6} \\]
 
