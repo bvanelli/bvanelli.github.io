@@ -71,6 +71,7 @@ Por último, adiciona-se os pacotes normalmente utilizados, como o [Fullpage](ht
 O documento básico resultante deve ser da seguinte forma:
 
 ```Latex
+%Início do documento
 \documentclass[11pt]{article}
 
 \usepackage[brazilian]{babel} % Idioma Português-Brasil
@@ -96,31 +97,31 @@ Alternativamente, se você quiser que a equação tenha sua linha própria, pode
 A seguir há alguns exemplos de uso.
 
 ----------
-<center>`$E = m c^2$`</center>
+<center>`E = m c^2`</center>
 
-\\[ E = mc^2 \\]
-
-----------
-<center>`$E_r = \sqrt{ (m c^2)^2 + (pc)^2 }$`</center>
-
-\\[ E_r = \sqrt{ (m c^2)^2 + (pc)^2 } \\]
-
+$$ E = mc^2 $$
 
 ----------
-<center>`$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$`</center>
+<center>`E_r = \sqrt{ (m c^2)^2 + (pc)^2 }`</center>
 
-\\[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\]
+$$ E_r = \sqrt{ (m c^2)^2 + (pc)^2 } $$
 
-----------
-<center>`$\int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi}$`</center>
-
-\\[ \int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi} \\]
 
 ----------
+<center>`x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}`</center>
 
-<center>`$\sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty} \left( \frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6}$` </center>
+$$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
 
-\\[ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6} \\]
+----------
+<center>`\int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi}`</center>
+
+$$ \int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi} $$
+
+----------
+
+<center>`\sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty} \left( \frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6}` </center>
+
+$$ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6} $$
 
 ----------
 > **Nota:** Os símbolos especiais utilizados utilizam comandos precedidos com um barra (`\`— exemplo `\pi` para o número $\pi$). Para uma lista de símbolos e usos mais completa consulte [este artigo da Wikibooks](https://en.wikibooks.org/wiki/LaTeX/Mathematics).
