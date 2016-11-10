@@ -13,7 +13,7 @@ layout: post
 
 ---------
 
-O \\( \LaTeX \\) (pronunciado "*Lah-tek*'') é uma ferramenta de preparação de textos de alta qualidade usado normalmente na publicação de trabalhos técnicos e científicos. O objetivo do $\LaTeX$ não é ser uma ferramenta de processamento de textos gráfica, mas sim uma linguagem onde o usuário se foca apenas em escrever, e deixa o programa lidar com os estilos dos títulos, subtítulos, referências, etc.
+O \( \LaTeX \) (pronunciado "*Lah-tek*'') é uma ferramenta de preparação de textos de alta qualidade usado normalmente na publicação de trabalhos técnicos e científicos. O objetivo do $\LaTeX$ não é ser uma ferramenta de processamento de textos gráfica, mas sim uma linguagem onde o usuário se foca apenas em escrever, e deixa o programa lidar com os estilos dos títulos, subtítulos, referências, etc.
 
 > **Pontos Positivos:**
 >
