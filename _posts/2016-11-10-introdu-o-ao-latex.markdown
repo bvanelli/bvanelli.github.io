@@ -95,29 +95,29 @@ Alternativamente, se você quiser que a equação tenha sua linha própria, pode
 A seguir há alguns exemplos de uso.
 
 ----------
-<center>`E = m c^2`</center>
+`E = m c^2`
 
 $$ E = mc^2 $$
 
 ----------
-<center>`E_r = \sqrt{ (m c^2)^2 + (pc)^2 }`</center>
+`E_r = \sqrt{ (m c^2)^2 + (pc)^2`
 
 $$ E_r = \sqrt{ (m c^2)^2 + (pc)^2 } $$
 
 
 ----------
-<center>`x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}`</center>
+`x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}`
 
 $$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
 
 ----------
-<center>`\int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi}`</center>
+`\int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi}`
 
 $$ \int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi} $$
 
 ----------
 
-<center>`\sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty} \left( \frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6}` </center>
+`\sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty} \left( \frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6}`
 
 $$ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6} $$
 
