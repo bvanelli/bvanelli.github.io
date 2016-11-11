@@ -336,8 +336,6 @@ Nesse exemplo será construído um documento simples multiuso para trabalhos sim
   right: 0;
 }
 </style>
-</head>
-<body>
 
 <center>
 <button onclick="window.open('https://www.overleaf.com/latex/templates/tex-template-simples-sem-capa/fjnhqxrqfgcg', '_blank');" class="button" style="vertical-align:middle"><span> Editar Online </span></button>
