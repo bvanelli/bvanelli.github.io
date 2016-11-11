@@ -4,8 +4,19 @@ title: Introdução ao LaTeX
 layout: post
 ---
 
+<!-- Include MathJax to render LaTeX. This might not work -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      jax: ["input/TeX","output/SVG"],
+      inlineMath: [['\(','\)']]
+   });
+  </script>
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js">
+</script>
 
-> Esse é um documento de introdução ao LaTeX. Para ver um exemplo de documento clique aqui
+
+> Esse é um documento de introdução ao LaTeX. Para ver um exemplo de documento [clique aqui](https://github.com/bvanelli/texdefault/raw/master/build/standard_output.pdf).
 
 ----------
 
@@ -54,7 +65,7 @@ Se seu sistema operacional for **Linux**, você vai precisar dos pacotes `texliv
 
 Um documento básico em LaTeX vai parecer algo do tipo:
 
-```TeX
+```Latex
 % Início do documento
 \documentclass[11pt]{article}
 
@@ -67,21 +78,21 @@ Essas linhas de código iniciam um documento do tipo artigo com fonte de tamanho
 
 No entanto surgem alguns problemas com essa implementação, como o uso de acentos na Língua Portuguesa. Para isso serão utilizados mais três pacotes, o pacote [Babel](https://www.ctan.org/pkg/babel) cuida das especificidades e regras de determinada linguagem, o pacote [Inputenc](https://www.ctan.org/pkg/inputenc) cuida da codificação de entrada, como os acentos, (UTF-8) e o pacote [Fontenc](https://www.ctan.org/pkg/fontenc) da codificação de saída.
 
-```TeX
+```Latex
 \usepackage[brazilian]{babel} % Idioma Português-Brasil
 \usepackage[utf8]{inputenc}   % Codificação de Entrada
 \usepackage[T1]{fontenc}      % Codificação de Saída
 ```
 Por último, adiciona-se os pacotes normalmente utilizados, como o [Fullpage](https://www.ctan.org/pkg/fullpage), que altera o tamanho das bordas para dar mais espaço ao texto, [Indentfirst](https://www.ctan.org/pkg/indentfirst), que cria um novo parágrafo a cada nova linha e o pacote [Graphicx](https://www.ctan.org/pkg/graphicx) que permite adicionar imagens.
 
-```TeX
+```Latex
 \usepackage{fullpage}      % Melhor uso da página
 \usepackage{indentfirst}   % Autoidentar
 \usepackage{graphicx}      % Importar figuras
 ```
 O documento básico resultante deve ser da seguinte forma:
 
-```TeX
+```Latex
 %Início do documento
 \documentclass[11pt]{article}
 
@@ -108,29 +119,29 @@ Alternativamente, se você quiser que a equação tenha sua linha própria, pode
 A seguir há alguns exemplos de uso.
 
 ----------
-`E = m c^2`
+<center> `E = m c^2` </center>
 
 $$ E = mc^2 $$
 
 ----------
-`E_r = \sqrt{ (m c^2)^2 + (pc)^2`
+<center> `E_r = \sqrt{ (m c^2)^2 + (pc)^2` </center>
 
 $$ E_r = \sqrt{ (m c^2)^2 + (pc)^2 } $$
 
 
 ----------
-`x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}`
+<center> `x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}` </center>
 
 $$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
 
 ----------
-`\int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi}`
+<center> `\int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi}` </center>
 
 $$ \int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi} $$
 
 ----------
 
-`\sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty} \left( \frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6}`
+<center> `\sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty} \left( \frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6}` </center>
 
 $$ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6} $$
 
@@ -141,21 +152,20 @@ $$ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \f
 
 Uma das vantagens do LaTeX é a facilidade com a criação de seções, subseções e subsubseções. Para isso basta chamar o comando equivalente:
 
-```TeX
+```Latex
 \section{Seção 1}
 \subsection{Subseção 1}
 \subsubsection{Subsubseção 1}
 ```
-
 Que irá produzir:
 
-INSERIR IMAGEM
+![numbers](https://cloud.githubusercontent.com/assets/8211602/20220105/5dc16d02-a813-11e6-9351-8da26ce6c2bb.png)
 
 O resultado é numerado automaticamente. Cada vez que um comando com numeração é chamado (Seção, Subseção, Figura, etc), você pode colocar um **label** que poderá ser chamado no texto. Portanto, se você quiser referenciar determinada Seção ou Figura, não precisa se preocupar com a numeração em que eles aparecem. 
 
 Para isso, utiliza-se o comando `\label{nome}` logo após criar a numeração. Para chamar a referência, basta usar o comando `\ref{nome}` Por exemplo:
 
-```TeX
+```Latex
 \section{Introdução} \label{sec:introducao}
 
 Esta é a introdução. A Seção \ref{sec:desenvolvimento} tratará do desenvolvimento.
@@ -167,7 +177,7 @@ Esse é o desenvolvimento, como descrito na Seção \ref{sec:introducao}.
 
 Irá produzir:
 
-INSERIR IMAGEM
+![secao](https://cloud.githubusercontent.com/assets/8211602/20220137/7f509218-a813-11e6-9c3b-dbd5baf06c73.png)
 
 > **Nota**: são necessárias **duas compilações** para o resultado desejado, pois na primeira todos os *labels* são processados e na segunda vez todas as *referências*.
 
@@ -175,7 +185,7 @@ INSERIR IMAGEM
 
 A geração do sumário é simplificada utilizando o LaTeX. Para isso, basta utilizar o comando `\tableofcontents`. Para deixar o sumário em sua página própria, basta usar:
 
-```TeX
+```Latex
 \newpage
 \tableofcontents
 \newpage
@@ -187,7 +197,7 @@ A geração do sumário é simplificada utilizando o LaTeX. Para isso, basta uti
 
 Inserir imagens no LaTeX pode parecer uma tarefa árdua a princípio, já que elas são incluídas no código. Para isso, basta usar o comando `\includegraphics`. É recomendado usar um ambiente `figure` para isso. A seguir, há um exemplo de inserção de imagem. 
 
-```TeX
+```Latex
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\textwidth]{imagem.png}
@@ -197,7 +207,7 @@ Inserir imagens no LaTeX pode parecer uma tarefa árdua a princípio, já que el
 
 Esse exemplo insere uma `imagem.png` centralizada com metade do tamanho do texto. De fato, a extensão `.png` pode ser suprimida. O `pdflatex` aceita nativamente os formatos **JPG**, **PNG**, **PDF** e **EPS**.
 
-INSERIR IMAGEM
+<div class="card"><img src="https://cloud.githubusercontent.com/assets/8211602/20220190/b668d1f2-a813-11e6-8238-da4c68f6dfab.png" /></div>
 
 Usar a variável `\textwidth` para dimensionamento das imagens é interessante pois a imagem sempre respeitará as bordas de texto. Pode-se passar como parâmetro tamanhos como `width=1cm` ou `width=2in` para medidas exatas.
 
@@ -207,7 +217,7 @@ Você deve ter notado o parâmetro `[!h]` no ambiente `figure`. Isso indica ao L
 
 Para adiciona imagens lado a lado, basta criar duas minipages e colocar uma imagem em cada. Para tal, pode-se usar a sequência de comandos:
 
-```TeX
+```Latex
 \begin{figure}[!h]
   \centering
   \begin{minipage}[b]{0.45\textwidth}
@@ -227,8 +237,10 @@ Para adiciona imagens lado a lado, basta criar duas minipages e colocar uma imag
 
 Para adicionar imagens no texto, o arquivo deve estar localizado na pasta raiz do projeto (na mesma pasta do documento). No entanto, é mais útil e organizado criar uma pasta separada somente para imagens. Para adicionar a pasta `figuras`, basta usar o seguinte comando no preâmbulo.
 
-```TeX
+```Latex
+{% raw %}
 \graphicspath{{./figuras/}}
+{% endraw %}
 ```
 
 ## Formatação
@@ -249,12 +261,12 @@ Sublinhado | `\underline{Texto Exemplo}` | <u>Texto Exemplo</u>
 
 As tabelas em LaTeX também podem ser geradas por código. Para tal, basta iniciar um `tabular`. As quebras de linhas são indicadas com o comando `\\`. Para melhorar os traços horizontais na tabela, utiliza-se o pacote [Booktabs](https://www.ctan.org/pkg/booktabs).
 
-```TeX
+```Latex
 \usepackage{booktabs}
 ```
 Para criar uma tabela de três colunas
 
-```TeX
+```Latex
 \begin{table}[!h]
 \renewcommand{\arraystretch}{1.3} % Ajusta espaçamento
 \centering
@@ -276,15 +288,63 @@ Potência &      n      & $\pi(n)$ \\ \midrule
 
 Irá produzir:
 
-INSERIR IMAGEM TABELA
+![tabela](https://cloud.githubusercontent.com/assets/8211602/20220307/28ae561a-a814-11e6-9b04-e9caad4a8062.png)
 
 ## Exemplo
 
 Nesse exemplo será construído um documento simples multiuso para trabalhos simples em LaTeX com os conteúdos abordados nesse documento. 
 
-Você pode [editar esse documento online](https://www.overleaf.com/read/fjnhqxrqfgcg).
+<style>
+.button {
+  display: inline-block;
+  border-radius: 6px;
+  background-color: #010740;
+  border: 1px;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 16px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  -webkit-appearance: button;
+}
 
-```TeX
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+</head>
+<body>
+
+<center>
+<button onclick="window.open('https://www.overleaf.com/latex/templates/tex-template-simples-sem-capa/fjnhqxrqfgcg', '_blank');" class="button" style="vertical-align:middle"><span> Editar Online </span></button>
+</center>
+
+{% raw %}
+```Latex
 \documentclass[11pt]{article}
 
 % Fonte em português brasileiro
@@ -321,3 +381,4 @@ Esta é uma conclusão.
 \end{document}
 
 ```
+{% endraw %}
