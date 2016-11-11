@@ -22,7 +22,7 @@ Os slides do Minicurso Introdutório de Arduino, bem como os sketches utilizados
 <div class="card"><img src="https://cloud.githubusercontent.com/assets/8211602/17445938/6473252a-5b1d-11e6-8464-b1d1a23b108a.png" /></div>
 
 
-Quer contribuir? [Sugira uma melhoria](https://github.com/bvanelli/eAR/issues/new)
+Quer contribuir? [Sugira uma melhoria](https://github.com/bvanelli/eAR/issues/new).
 
 ## Licença
 
