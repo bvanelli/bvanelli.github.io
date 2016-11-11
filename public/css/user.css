@@ -1,0 +1,66 @@
+/*
+
+Configuração CSS utilizada por aí ué
+
+*/
+
+
+/* Butão legal */
+.fancybutton {
+  display: inline-block;
+  border-radius: 6px;
+  background-color: #010740;
+  border: 1px;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 16px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  -webkit-appearance: button;
+}
+
+.fancybutton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.fancybutton span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.fancybutton:hover span {
+  padding-right: 25px;
+}
+
+.fancybutton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+
+/* Estilo para imagens sem borda */
+
+.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+}
+
+
+/* Estilo para imagens com borda cartão */
+div.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+} 
+
+
