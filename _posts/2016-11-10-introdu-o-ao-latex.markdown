@@ -146,7 +146,7 @@ $$ \int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi} $$
 $$ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6} $$
 
 ----------
-> **Nota:** Os símbolos especiais utilizados utilizam comandos precedidos com um barra (`\`— exemplo `\pi` para o número $\pi$). Para uma lista de símbolos e usos mais completa consulte [este artigo da Wikibooks](https://en.wikibooks.org/wiki/LaTeX/Mathematics).
+> **Nota:** Os símbolos especiais utilizados utilizam comandos precedidos com um barra (`\`— exemplo `\pi` para o número Pi). Para uma lista de símbolos e usos mais completa consulte [este artigo da Wikibooks](https://en.wikibooks.org/wiki/LaTeX/Mathematics).
 
 ## Títulos, Subtítulos e Referências Cruzadas
 
@@ -207,7 +207,7 @@ Inserir imagens no LaTeX pode parecer uma tarefa árdua a princípio, já que el
 
 Esse exemplo insere uma `imagem.png` centralizada com metade do tamanho do texto. De fato, a extensão `.png` pode ser suprimida. O `pdflatex` aceita nativamente os formatos **JPG**, **PNG**, **PDF** e **EPS**.
 
-<div class="card"><img src="https://cloud.githubusercontent.com/assets/8211602/20220190/b668d1f2-a813-11e6-8238-da4c68f6dfab.png" /></div>
+![figura](https://cloud.githubusercontent.com/assets/8211602/20220190/b668d1f2-a813-11e6-8238-da4c68f6dfab.png)
 
 Usar a variável `\textwidth` para dimensionamento das imagens é interessante pois a imagem sempre respeitará as bordas de texto. Pode-se passar como parâmetro tamanhos como `width=1cm` ou `width=2in` para medidas exatas.
 
@@ -237,11 +237,11 @@ Para adiciona imagens lado a lado, basta criar duas minipages e colocar uma imag
 
 Para adicionar imagens no texto, o arquivo deve estar localizado na pasta raiz do projeto (na mesma pasta do documento). No entanto, é mais útil e organizado criar uma pasta separada somente para imagens. Para adicionar a pasta `figuras`, basta usar o seguinte comando no preâmbulo.
 
-```Latex
 {% raw %}
+```Latex
 \graphicspath{{./figuras/}}
-{% endraw %}
 ```
+{% endraw %}
 
 ## Formatação
 
