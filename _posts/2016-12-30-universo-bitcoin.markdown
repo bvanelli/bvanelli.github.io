@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: O Universo Bitcoin 
 layout: post
 ---
@@ -22,7 +22,20 @@ Para primeiro entender como isso é feito, deve-se entender o que é uma **funç
 
 ## Funções Hash
 
+A função hash é uma
 
+<input type="text" id="myInput" style="width: 100%; height: 40px; font-size:22px;" oninput="myFunction()">
 
+<p id="sha-output"></p>
+
+<script src="https://cdn.rawgit.com/chrisveness/crypto/9a15aa9/sha256.js"></script>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myInput").value;
+    var hash = Sha256.hash(x);
+    document.getElementById("sha-output").innerHTML = "SHA256: " + hash;
+}
+</script>
 
 
