@@ -63,3 +63,15 @@ div.card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 } 
 
+/* Estilo para caixa colorida do tipo div */
+
+.fancybox {
+    background-color: lightgrey;
+    width: 100%;
+    padding: 25px;
+    margin: 0px;
+    border-radius: 33px 33px 33px 33px;-moz-border-radius: 33px 33px 33px 33px;
+    -webkit-border-radius: 33px 33px 33px 33px;
+    border: 0px solid #000000;
+    margin-bottom: 7px;
+}
