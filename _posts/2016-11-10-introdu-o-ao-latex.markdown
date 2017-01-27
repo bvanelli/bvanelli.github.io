@@ -78,14 +78,14 @@ Essas linhas de código iniciam um documento do tipo artigo com fonte de tamanho
 
 As linhas antes do `\begin{document}` fazem parte do preâmbulo. Ele é geralmente utilizado para importar pacotes ou definir comandos.
 
-No entanto surgem alguns problemas com essa implementação, como o uso de acentos na Língua Portuguesa. Para isso serão utilizados mais três pacotes, o pacote [Babel](https://www.ctan.org/pkg/babel) cuida das especificidades e regras de determinada linguagem, o pacote [Inputenc](https://www.ctan.org/pkg/inputenc) cuida da codificação de entrada, como os acentos, (UTF-8) e o pacote [Fontenc](https://www.ctan.org/pkg/fontenc) da codificação de saída.
+No entanto, surgem alguns problemas com esse código, já que não permite o uso de acentos da Língua Portuguesa. Para isso serão utilizados mais três pacotes, o pacote [Babel](https://www.ctan.org/pkg/babel) que cuida das especificidades e regras de determinada linguagem, o pacote [Inputenc](https://www.ctan.org/pkg/inputenc) que cuida da codificação de entrada, como os acentos, e o pacote [Fontenc](https://www.ctan.org/pkg/fontenc) da codificação de saída.
 
 ```TeX
 \usepackage[brazilian]{babel} % Idioma Português-Brasil
 \usepackage[utf8]{inputenc}   % Codificação de Entrada
 \usepackage[T1]{fontenc}      % Codificação de Saída
 ```
-Por último, adiciona-se os pacotes normalmente utilizados, como o [Fullpage](https://www.ctan.org/pkg/fullpage), que altera o tamanho das bordas para dar mais espaço ao texto, [Indentfirst](https://www.ctan.org/pkg/indentfirst), que cria um novo parágrafo a cada nova linha e o pacote [Graphicx](https://www.ctan.org/pkg/graphicx) que permite adicionar imagens.
+Por último, adiciona-se os pacotes normalmente utilizados, como o [Fullpage](https://www.ctan.org/pkg/fullpage), que altera automaticamente o tamanho das bordas para dar mais espaço ao texto, [Indentfirst](https://www.ctan.org/pkg/indentfirst), que cria um novo parágrafo a cada nova linha e o pacote [Graphicx](https://www.ctan.org/pkg/graphicx) que permite adicionar imagens.
 
 ```TeX
 \usepackage{fullpage}      % Melhor uso da página
@@ -114,9 +114,9 @@ Olá mundo.
 
 ## Escrevendo Equações
 
-Uma das partes fundamentais do LaTeX é a inserção de equações. Para isso, utiliza-se o ambiente *Mathmode*, indicado pelo caractere cifrão (`$`), onde pode-se escrever equações livremente utilizando a notação habitual. Desse modo, as equações serão inseridas dentro do texto.
+Uma das partes fundamentais do LaTeX é a inserção de equações. Para isso, utiliza-se o ambiente *Mathmode*, normalmente colocando o texto matemático entre dois cifrões (`$`), onde pode-se escrever equações livremente utilizando a notação habitual. Desse modo, as equações serão inseridas sem interromper o fluxo de texto.
 
-Alternativamente, se você quiser que a equação tenha sua linha própria, pode-se dois cifrões  `$$` ou usar o comando `\begin{equation}`, que numerará as equações.
+Alternativamente, se você quiser que a equação tenha sua linha própria, como em equações longas, pode-se utilizar dois  cifrões  `$$` de cada lado ou usar o comando `\begin{equation}`, que também numerará as equações. É interessante que o LaTeX numera todas as equações, figuras e tabelas automaticamente. Não é necessário se preocupar se uma figura vem antes da outra, já que a numeração é feita pelo compilador.
 
 A seguir há alguns exemplos de uso.
 
@@ -152,7 +152,7 @@ $$ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \f
 
 ## Títulos, Subtítulos e Referências Cruzadas
 
-Uma das vantagens do LaTeX é a facilidade com a criação de seções, subseções e subsubseções. Para isso basta chamar o comando equivalente:
+Uma das vantagens do LaTeX é a facilidade com a criação de **seções**, **subseções** e **subsubseções**. Para isso basta chamar o comando equivalente:
 
 ```TeX
 \section{Seção 1}
@@ -164,9 +164,9 @@ Que irá produzir:
 
 <img src="https://cloud.githubusercontent.com/assets/8211602/20220105/5dc16d02-a813-11e6-9351-8da26ce6c2bb.png" style="width: 85%;"/>
 
-O resultado é numerado automaticamente. Cada vez que um comando com numeração é chamado (Seção, Subseção, Figura, etc), você pode colocar um **label** que poderá ser chamado no texto. Portanto, se você quiser referenciar determinada Seção ou Figura, não precisa se preocupar com a numeração em que eles aparecem. 
+O resultado é numerado automaticamente. Além disso, cada vez que um comando com numeração é chamado (Seção, Subseção, Figura, etc), você pode colocar um **label** (ou rótulo) que identifica o elemento e pode ser chamado no texto. Portanto, se você quiser referenciar determinada Seção ou Figura, não precisa se preocupar com a numeração em que eles aparecem, basta chamar o rótulo que você criou. 
 
-Para isso, utiliza-se o comando `\label{nome}` logo após criar a numeração. Para chamar a referência, basta usar o comando `\ref{nome}` Por exemplo:
+Para isso, utiliza-se o comando `\label{nome}` logo após criar a numeração. Para chamar a referência, basta usar o comando `\ref{nome}`. É interessante, mas não obrigatório, utilizar um prefixo nos nomes para identificar o que você está referenciando, como **sec** para seções ou **fig** para figuras. Por exemplo:
 
 ```TeX
 \section{Introdução} \label{sec:introducao}
@@ -186,7 +186,7 @@ Irá produzir:
 
 ## Sumário
 
-A geração do sumário é simplificada utilizando o LaTeX. Para isso, basta utilizar o comando `\tableofcontents`. Para deixar o sumário em sua página própria, basta usar:
+A geração do sumário é simplificada utilizando o LaTeX. Para isso, basta utilizar o comando `\tableofcontents`. Para deixar o sumário em sua página própria, basta usar `\newpage`:
 
 ```TeX
 \newpage
@@ -212,9 +212,9 @@ Esse exemplo insere uma `imagem.png` centralizada com metade do tamanho do texto
 
 <img src="https://cloud.githubusercontent.com/assets/8211602/20220190/b668d1f2-a813-11e6-8238-da4c68f6dfab.png" style="width: 85%;"/>
 
-Usar a variável `\textwidth` para dimensionamento das imagens é interessante pois a imagem sempre respeitará as bordas de texto. Pode-se passar como parâmetro tamanhos como `width=1cm` ou `width=2in` para medidas exatas.
+Usar a variável `\textwidth` para dimensionamento das imagens é interessante pois a imagem sempre respeitará as bordas de texto (incluindo texto escrito em duas colunas). Pode-se passar como parâmetro tamanhos como `width=1cm` ou `width=2in` para medidas exatas.
 
-Você deve ter notado o parâmetro `[!h]` no ambiente `figure`. Isso indica ao LaTeX para *tentar* inserir a figura no local onde ela é chamada no texto. Caso isso não seja possível, o compilador irá deslocar a imagem para um local apropriado para não interromper o fluxo do texto. Outros parâmetros que podem ser utilizados são `b` (bottom), `t` (top). O caractere `!`indica que algumas restrições de posicionamento podem ser  ignoradas.
+Você deve ter notado o parâmetro `[!h]` no ambiente `figure`. Isso indica ao LaTeX para *tentar* inserir a figura no local onde ela é chamada no texto. Caso isso não seja possível, o compilador irá deslocar a imagem para um local apropriado para não interromper o fluxo do texto. Outros parâmetros que podem ser utilizados são `b` (bottom), `t` (top). O caractere `!`indica que algumas restrições de posicionamento podem ser ignoradas (como em `[!htb]`, que posiciona a imagem em qualquer lugar).
 
 ### Imagens Lado a Lado
 
@@ -249,13 +249,13 @@ Para adicionar imagens no texto, o arquivo deve estar localizado na pasta raiz d
 Para formação do texto, pode-se usar funções como negrito, itálico e outros efeitos.
 
 
-Função | Comando  | Resultado
--------- | -------- | -------- 
-Negrito |`\textbf{Texto Exemplo}` | **Texto Exemplo**
-Itálico   |`\textit{Texto Exemplo}`   | *Texto Exemplo*
-Sublinhado | `\underline{Texto Exemplo}` | <u>Texto Exemplo</u>
+Comando  | Resultado
+-------- | -------- 
+`\textbf{Texto Exemplo}` | **Texto Exemplo**
+`\textit{Texto Exemplo}`   | *Texto Exemplo*
+`\underline{Texto Exemplo}` | <u>Texto Exemplo</u>
 
-> **Nota:** Para mais estilos de fonte e tamanhos diferentes, cheque [esse tutorial no ShareLaTeX](https://pt.sharelatex.com/learn/Font_sizes,_families,_and_styles)
+> <i class="fa fa-book fa-fw" aria-hidden="true"></i> **Nota:** Para mais estilos de fonte e tamanhos diferentes, cheque [esse tutorial no ShareLaTeX](https://pt.sharelatex.com/learn/Font_sizes,_families,_and_styles).
 
 
 ## Tabelas
@@ -265,7 +265,7 @@ As tabelas em LaTeX também podem ser geradas por código. Para tal, basta inici
 ```TeX
 \usepackage{booktabs}
 ```
-Para criar uma tabela de três colunas, basta usar o seguinte código:
+Para criar uma tabela de três colunas, basta usar o seguinte código.
 
 ```TeX
 \begin{table}[!h]
@@ -337,3 +337,9 @@ Esta é uma conclusão.
 \end{document}
 
 ```
+
+## Considerações Finais
+
+Em primeiro lugar, **não se assuste**. O LaTeX pode parecer complicado à primeira vista por ter um paradigma muito diferente dos produtores de texto usuais. Tenha em mente que uma vez que o conhecimento básico foi dominado, será mais fácil e rápido fazer documentos em LaTeX pela despreocupação com os estilos de títulos e parágrafos, e principalmente ao digitar equações.
+
+Para saber mais, consulte (mais códigos de exemplo)[https://github.com/bvanelli/texdefault] disponibilizados na minha página do Github, (exemplos do Overleaf)[overleaf.com] e o bom e velho Google.
