@@ -130,7 +130,6 @@ $$ E = mc^2 $$
 
 $$ E_r = \sqrt{ (m c^2)^2 + (pc)^2 } $$
 
-
 ----------
 `x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}`
 
@@ -142,13 +141,13 @@ $$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
 $$ \int^{+\infty}_{-\infty} e^{x^2} dx = \sqrt{\pi} $$
 
 ----------
-
 `\sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty} \left( \frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6}`
 
 $$ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2} \right) = \frac{\pi^2}{6} $$
 
 ----------
 > <i class="fa fa-book fa-fw" aria-hidden="true"></i> **Nota:** Os símbolos especiais utilizados utilizam comandos precedidos com um barra (`\`— exemplo `\pi` para o número Pi). Para uma lista de símbolos e usos mais completa consulte [este artigo da Wikibooks](https://en.wikibooks.org/wiki/LaTeX/Mathematics).
+
 
 ## Títulos, Subtítulos e Referências Cruzadas
 
@@ -342,4 +341,4 @@ Esta é uma conclusão.
 
 Em primeiro lugar, **não se assuste**. O LaTeX pode parecer complicado à primeira vista por ter um paradigma muito diferente dos produtores de texto usuais. Tenha em mente que uma vez que o conhecimento básico foi dominado, será mais fácil e rápido fazer documentos em LaTeX pela despreocupação com os estilos de títulos e parágrafos, e principalmente ao digitar equações.
 
-Para saber mais, consulte (mais códigos de exemplo)[https://github.com/bvanelli/texdefault] disponibilizados na minha página do Github, (exemplos do Overleaf)[overleaf.com] e o bom e velho Google.
+Para saber mais, consulte [mais códigos de exemplo](https://github.com/bvanelli/texdefault) disponibilizados na minha página do Github, [exemplos do Overleaf](https://www.overleaf.com/latex/templates) e o bom e velho Google.
