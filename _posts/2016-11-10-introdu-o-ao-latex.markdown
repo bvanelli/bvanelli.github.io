@@ -10,8 +10,8 @@ layout: post
       jax: ["input/TeX","output/SVG"],
       inlineMath: [['\(','\)']]
    });
-  </script>
-  <script type="text/javascript"
+</script>
+<script type="text/javascript"
           src="https://cdn.mathjax.org/mathjax/latest/MathJax.js">
 </script>
 
@@ -19,25 +19,11 @@ layout: post
 > Esse é um documento de introdução ao LaTeX. Para ver um exemplo de documento <i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i>[clique aqui](https://github.com/bvanelli/texdefault/raw/master/build/standard_output.pdf).
 
 ----------
+* auto-gen TOC:
+{:toc}
+----------
 
-- [Instalando o LaTeX](#)
-	- [Windows](#)
-	- [Linux](#)
-- [Primeiro Documento](#)
-- [Escrevendo Equações](#)
-- [Títulos, Subtítulos e Referências Cruzadas](#)
-- [Sumário](#)
-- [Inserindo Imagens](#)
-	- [Imagens Simples](#)
-	- [Imagens Lado a Lado](#)
-	- [Organizando uma pasta de imagens](#)
-- [Formatação](#)
-- [Tabelas](#)
-- [Exemplo](#)
-
----------
-
-O LaTeX (pronunciado "*Lah-tek*'') é uma ferramenta de preparação de textos de alta qualidade usado normalmente na publicação de trabalhos técnicos e científicos. O objetivo do LaTeX não é ser uma ferramenta de processamento de textos gráfica, mas sim uma linguagem onde o usuário se foca apenas em escrever, e deixa o programa lidar com os estilos dos títulos, subtítulos, referências, etc.
+O LaTeX (pronunciado ''*Lah-tek*'') é uma ferramenta de preparação de textos de alta qualidade usado normalmente na publicação de trabalhos técnicos e científicos. O objetivo do LaTeX não é ser uma ferramenta de processamento de textos gráfica, mas sim uma linguagem onde o usuário se foca apenas em escrever, e deixa o programa lidar com os estilos dos títulos, subtítulos, referências, etc.
 
 > **Pontos Positivos:**
 >
@@ -74,7 +60,7 @@ Olá mundo.
 \end{document}
 ```
 
-Essas linhas de código iniciam um documento do tipo artigo com fonte de tamanho 11 pt e imprimem "Olá mundo.'' na página. Todo o conteúdo dentro as linhas do `\begin{document` e o `\end{document}` aparecerá no documento, com exceção dos comentários marcados com um sinal de porcentagem (`%`).
+Essas linhas de código iniciam um documento do tipo artigo com fonte de tamanho 11 pt e imprimem ''Olá mundo.'' na página. Todo o conteúdo dentro as linhas do `\begin{document` e o `\end{document}` aparecerá no documento, com exceção dos comentários marcados com um sinal de porcentagem (`%`).
 
 As linhas antes do `\begin{document}` fazem parte do preâmbulo. Ele é geralmente utilizado para importar pacotes ou definir comandos.
 
@@ -147,6 +133,8 @@ $$ \sum_{n=1}^\infty \frac{1}{n^2} = \lim_{n \to \infty}\left(\frac{1}{1^2} + \f
 
 ----------
 > <i class="fa fa-book fa-fw" aria-hidden="true"></i> **Nota:** Os símbolos especiais utilizados utilizam comandos precedidos com um barra (`\`— exemplo `\pi` para o número Pi). Para uma lista de símbolos e usos mais completa consulte [este artigo da Wikibooks](https://en.wikibooks.org/wiki/LaTeX/Mathematics).
+
+----------
 
 
 ## Títulos, Subtítulos e Referências Cruzadas
