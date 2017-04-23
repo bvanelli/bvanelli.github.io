@@ -15,11 +15,11 @@ layout: post
 
 A primeira ideia de criptomoeda surgiu em 2008 em um pequeno artigo de Satoshi Nakamoto entitulado ["Bitcoin: A peer-to-peer electronic cash system"](https://bitcoin.org/bitcoin.pdf). Embora ninguém realmente saiba a identidade verdadeira de Nakamoto, seu artigo de apenas 9 páginas revolucionou o mundo das moedas digitais.
 
-A ideia geral das criptomoedas é bem simples: manter todas as transações e carteiras seguras através de criptografia, mantendo todos os usuários cientes do banco de dados. Em palavras mais simples, o sistema não é baseado em confiança, e sim em prova criptográfica.
+A ideia geral das criptomoedas é bem simples: manter todas as transações e carteiras seguras através de criptografia, fazendo com que só você tenha acesso à sua carteira e só você posso gastar suas criptomoedas. Em palavras mais simples, o sistema não é baseado em confiança, e sim em prova criptográfica.
 
-Em palavras ainda mais simples: ao realizar um pagamento, há uma relação de confiança. Geralmente, se confia no banco utilizado como terceiro elemento para intermediar o pagamento. Nesse caso, o banco é responsável por ficar com seu dinheiro e mover de conta em conta. É necessário que ambas as partes confiem no banco.
+Em palavras ainda mais simples: ao realizar um pagamento, há uma relação de confiança. Geralmente, se confia no banco utilizado como terceiro elemento para intermediar o pagamento. Nesse caso, o banco é responsável por ficar com seu dinheiro e mover de conta em conta. É necessário que ambas as partes confiem em uma terceira entidade, como um banco, para que ambos tenham a certeza que seu dinheiro chegará em segurança.
 
-Mas isso mudou em 31 de outubro de 2008, com a introdução de um sistema capaz de, através de criptografia, permitir transações sem a necessidade de terceiros. E esse é um serviço comunitário: para que uma transação seja aceita, ela tem que ser adicionada à algum bloco, e é aí que entram os mineradores de Bitcoin, trabalhando para manter os blocos consistentes.
+Mas isso mudou em 31 de outubro de 2008, com a introdução de um sistema capaz de, através de criptografia, permitir transações sem a necessidade de terceiros. E esse é um serviço comunitário, e que pode ser verificado por qualquer: para que uma transação seja aceita, ela tem que ser adicionada à algum bloco, e é aí que entram os mineradores de Bitcoin, trabalhando para manter os blocos consistentes.
 
 Para primeiro entender como isso é feito, deve-se entender o que é uma **função hash**.
 
@@ -32,10 +32,10 @@ Um exemplo bem simples de função hash que transorma um número decimal em um o
 Uma função hash tem diversos usos, mas geralmente algumas propriedades são esperadas, como:
 
 - **Determinismo**, onde um valor sempre gera a mesma hash.
-- **Distribuição uniforme**, de forma que não sejam gerados muitos valores similares.
+- **Distribuição uniforme**, de forma que o resultado seja pseudo-aleatório e com iguais probabilidades para qualquer resultado.
 - **Rápida de ser gerada**, mas não tão rápida que possa ser computada aos milhares facilmente.
-- É impraticável achar a entrada original a partir da hash.
-- É impraticável achar duas entradas com a mesma hash.
+- **Irreversível**, sendo impraticável computacionalmente de achar a entrada original a partir da hash.
+- **Não-colisão**, sendo impraticável achar duas entradas com a mesma hash.
 - Uma pequena mudança no valor de entrada causa uma grande mudança no valor da hash.
 
 Abaixo há uma caixa de texto que computa um algoritmo de hash famoso, o [SHA256](https://en.wikipedia.org/wiki/SHA-2), utilizado como algoritmo da Bitcoin.
