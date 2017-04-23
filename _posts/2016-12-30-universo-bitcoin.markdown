@@ -69,3 +69,11 @@ Agora tente achar algo que gere uma hash iniciando em **0**. Vou te poupar do tr
 Esse conceito de tempo de processamento é importante para as criptomoedas e é chamado de **Prova de Trabalho** ou **[Proof-of-Work](https://en.wikipedia.org/wiki/Proof-of-work_system)**. Em suma, você tem que provar que realmente trabalhou para criar valor, ou minerar uma Bitcoin.
 
 ## Conceito de Transação
+
+Uma transação nada mais é do que uma prova de que o dinheiro foi enviado de uma pessoa para outra. Suponha que o usuário **Alpha** queira enviar uma quantia para o usuário **Beta**. A imagem a seguir representa um envio desse tipo retirado de um bloco aleatório. Note que o usuário **Alpha**, além de enviar uma quantia para **Beta**, envia uma quantidade para seu próprio endereço de Bitcoin. Isso ocorre porque cada transação deve equivaler à quantidade de Bitcoins na carteira de quem está enviando. O que sobrar na carteira que não for enviado para nenhuma outra carteira é utilizado como **taxa de transação** e é enviado para quem minerar o bloco.
+
+<img src="https://cloud.githubusercontent.com/assets/8211602/25315163/5bc9d36a-2827-11e7-873b-db2c0814e9a2.png" style="width: 100%;"/>
+
+No entanto, cada transação precisa ser assinada para ser válida. Isso é feito utilizando-se de [criptografia e chaves públicas e privadas](https://en.wikipedia.org/wiki/Digital_signature). Ao criar uma transação, o usuário a assina com sua **chave privada** (que só ele sabe, a chave que representa sua carteira) e envia também sua **chave pública** (que não pode ser usada para obter a chave privada).
+
+Uma propriedade matemática dessas chaves é que somente a chave privada pode assinar mensagens, e a chave pública pode ser utilizada para verificar a autenticidade, se quem enviou a transação realmente possui a chave privada, e também verificar integridade, se essa transação não foi alterada no caminho. É extremamente implausível computacionalmente para a tecnologia atual atacar por força bruta as chaves, portanto, **nem mesmo o dono das Bitcoins pode resgatá-las caso a chave privada seja perdida.**
