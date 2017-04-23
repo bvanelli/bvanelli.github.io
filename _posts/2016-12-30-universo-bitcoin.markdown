@@ -77,3 +77,52 @@ Uma transação nada mais é do que uma prova de que o dinheiro foi enviado de u
 No entanto, cada transação precisa ser assinada para ser válida. Isso é feito utilizando-se de [criptografia e chaves públicas e privadas](https://en.wikipedia.org/wiki/Digital_signature). Ao criar uma transação, o usuário a assina com sua **chave privada** (que só ele sabe, a chave que representa sua carteira) e envia também sua **chave pública** (que não pode ser usada para obter a chave privada).
 
 Uma propriedade matemática dessas chaves é que somente a chave privada pode assinar mensagens, e a chave pública pode ser utilizada para verificar a autenticidade, se quem enviou a transação realmente possui a chave privada, e também verificar integridade, se essa transação não foi alterada no caminho. É extremamente implausível computacionalmente para a tecnologia atual atacar por força bruta as chaves, portanto, **nem mesmo o dono das Bitcoins pode resgatá-las caso a chave privada seja perdida.**
+
+Note que as transações são anunciadas publicamente para todos os nodos, de forma que qualquer um pode ter registro das transações que vão sendo feitas. Mas para realmente consolidar as transações, elas são reunidas em blocos.
+
+## Bloco
+
+O bloco nada mais é do que uma lista de transações. O bloco é composto de 6 campos, que serão explicados mais adiante:
+
+- **Versão**: versão do bloco.
+- **Hash do bloco anterior**: SHA-256 do bloco anterior.
+- **Hash das transações**: SHA-256 da raiz da [árvore de Merkle](https://en.wikipedia.org/wiki/Merkle_tree) de todas as transações. Essa é uma hash combinada de todas as transações para o bloco possuir tamanho fixo.
+- **Tempo**: convenção de tempo como segundos transcorridos desde 1970-01-01T00:00 UTC.
+- **Target**: número de 256 bits (assim como a hash) que define a dificuldade do bloco ao ser minerado.
+- **Nonce**: número de 32 bits que pode ser variado livremente.
+
+Um exemplo de um bloco real pode ser visto abaixo. Note a quantidade de zeros da hash do bloco.
+
+<img src="https://cloud.githubusercontent.com/assets/8211602/25316075/932c32da-2836-11e7-8a2f-10470e8d4d62.png" style="width: 100%;"/>
+
+## Blockchain (Cadeia de Blocos) 
+
+Como pode ser visto na definição de bloco, cada bloco possui a hash do bloco anterior. Isso significa que todos os blocos, à partir do primeiro, estão "ligados" ao bloco anterior, em uma cadeia única. No momento em que um bloco novo é criado, ele é adicionado no *blockchain* e o próximo bloco já pode ser minerado. O minerador então recebe a recompensa por minerar o bloco mais a soma de todas as taxas de transações.
+
+<img src="https://qzprod.files.wordpress.com/2013/12/illos6.png" style="width: 100%;"/>
+
+O objetivo da Bitcoin é ter um bloco minerado a cada 10 minutos. Com o aumento do número de mineradores, também cai o tempo necessário para mineração. Para corrigir esse problema, a cada 2016 blocos, ou aproximadamente 2 semanas, a dificuldade é alterada e enviada na variável **target**.
+
+Para minerar, basta utilizar o algoritmo ``SHA256(SHA256(bloco))`` e comparar se o resultado é menor que o **target**. Se for, você minerou com sucesso e pode receber suas Bitcoins. Caso contrário, você deve incrementar o **Nonce** e tentar novamente. O processo de minerar consiste em **tentar várias combinações de transações e Nonce até achar uma configuração com o número de zeros correto (hash menor que o target)**. Embora pareça simples, note que cada 0 adicionado aumenta exponencialmente o trabalho necessário. Você pode comprovar isso tentando achar qualquer valor que gere uma hash que inicie com 10 zeros!
+
+Os blocos são minerados por um único motivo: manter a blockchain consistente e registrar as transações. Uma vez que uma transação é adicionada em um bloco, ela está confirmada, e cada novo bloco que é gerado à sua frente resulta em mais uma confirmação. Como todos os nodos na rede podem ter sua própria cópia do blockchain, todos podem verificar que as transações e as hashes são válidas.
+
+### Dificuldade com o tempo
+
+A próxima figura mostra como a dificuldade dos blocos cresceu com o tempo. Note que a dificuldade também é medida em PHash/s, ou Peta Hashes por segundo (**1P = 10<sup>15</sup>**), uma produção combinada exorbitante de hashes!
+
+<img src="https://bitcoin.sipa.be/speed-lin-ever.png" style="width: 100%;"/>
+
+### Proteção contra fraude
+
+A escolha de uma cadeia de blocos não é à toa: supondo que alguém queira gastar a mesma quantia de Bitcoins duas vezes. Para isso, ele pode tentar alterar o bloco em que sua transação foi registrada para retirá-la do bloco. Isso implica em recalcular esse bloco e todos os posteriores até o bloco honesto atual, já que a cadeia válida é sempre a mais longa. Nesse processo, ele terá que superar todo o poder computacional combinado de todos os outros mineradores, que é inviável.
+
+As transações, mesmo sendo completamente públicas, estão seguras pois **a menor alteração no bloco implica em uma solução completamente diferente para o Nonce, que implica em resolver o problema computacional praticamente impossível de superar todos os outros mineradores juntos**.
+
+### Porque minerar?
+
+Mas você deve estar se perguntando: porque alguém gastaria tempo e processamento para tentar minerar um bloco? A resposta é simples: todo bloco possui uma recompensa!
+
+A recompensa é inicialmente **50 BTC** e é cortada ao meio a cada **210,000 blocos**, ou aproximadamente 4 anos. **O número máximo de Bitcoins que serão produzidas será de 21,000,000 BTC**, portanto, a recompensa passará de 6,25 BTC diretamente para 0 BTC.
+
+Quando a recompensa for zero, nenhuma nova Bitcoin poderá ser criada, mas os blocos continuarão a ser gerados, porque as transações continuarão acontecendo. Acredita-se que, com o aumento do número de transações, a recompensa virá através das **taxas de transação**, que são valores pequenos que os usuários "doam" para os mineradores para que suas transações tenham preferência ao serem adicionadas aos blocos. O minerador, ao minerar uma grande quantidade de transações por vez, garante que receberá uma quantia maior por taxas, que serve como estímulo para continuar a mineração.
