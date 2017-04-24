@@ -13,7 +13,7 @@ layout: post
 
 ## Introdução
 
-A primeira ideia de criptomoeda surgiu em 2008 em um pequeno artigo de Satoshi Nakamoto entitulado ["Bitcoin: A peer-to-peer electronic cash system"](https://bitcoin.org/bitcoin.pdf). Embora ninguém realmente saiba a identidade verdadeira de Nakamoto, seu artigo de apenas 9 páginas revolucionou o mundo das moedas digitais.
+A primeira ideia de criptomoeda surgiu em 2008 em um pequeno artigo de Satoshi Nakamoto intitulado ["Bitcoin: A peer-to-peer electronic cash system"](https://bitcoin.org/bitcoin.pdf). Embora ninguém realmente saiba a identidade verdadeira de Nakamoto, seu artigo de apenas 9 páginas revolucionou o mundo das moedas digitais.
 
 A ideia geral das criptomoedas é bem simples: manter todas as transações e carteiras seguras através de criptografia, fazendo com que só você tenha acesso à sua carteira e só você posso gastar suas criptomoedas. Em palavras mais simples, o sistema não é baseado em confiança, e sim em prova criptográfica.
 
@@ -27,7 +27,7 @@ Para primeiro entender como isso é feito, deve-se entender o que é uma **funç
 
 A função hash, em poucas palavras, é uma função matemática não reversível que gera uma saída de tamanho fixo para uma determinada entrada. 
 
-Um exemplo bem simples de função hash que transorma um número decimal em um outro de tamanho unitário é somar todos os algarismos e calcular o resto da divisão por 10. Nesse contexto, aplicar a nossa função hash no número **403** gera **7**, pois é **4 + 0 + 3 = 7**, e o resto dessa divisão por 10 é **7**. Se aplicado a **5454**, a função hash é **8**, pois **5 + 4 + 5 + 4 = 18**, e o resto da divisão por 10 é **8**. Note que essa função não é reversível: não existe meio de se obter o número original através do valor hash, pois parte da informação é perdida no processo.
+Um exemplo bem simples de função hash que transforma um número decimal em um outro de tamanho unitário é somar todos os algarismos e calcular o resto da divisão por 10. Nesse contexto, aplicar a nossa função hash no número **403** gera **7**, pois é **4 + 0 + 3 = 7**, e o resto dessa divisão por 10 é **7**. Se aplicado a **5454**, a função hash é **8**, pois **5 + 4 + 5 + 4 = 18**, e o resto da divisão por 10 é **8**. Note que essa função não é reversível: não existe meio de se obter o número original através do valor hash, pois parte da informação é perdida no processo.
 
 Uma função hash tem diversos usos, mas geralmente algumas propriedades são esperadas, como:
 
@@ -62,7 +62,7 @@ Existe um segundo uso muito especial para funções hash: a ofuscação de senha
 
 Outra utilização é fazer a verificação da integridade de arquivos. Já que a hash é praticamente única, para ter certeza que alguém recebeu o arquivo *exato* que você enviou, basta pedir que ele tire a hash e compare com a quem você tem do seu arquivo. É implausível que alguém consiga modificar o arquivo antes do fim do universo de tal forma que a hash continue a mesma. 
 
-Como a hash é pseudoaletória, é necessário gerar uma quantidade exorbitante de hashes por segundo para se achar uma hash com propriedades desejadas. Já vimos que é virtualmente impossível achar uma hash específica, mas e um conjunto de hashes? Tente por exemplo achar uma hash que inicie com o número **1** na forma hexadecimal (digite na caixa de texto acima). Não são necessárias muitas tentativas para achar o número **9**, ou também a letra **d**. 
+Como a hash é pseudo-aleatória, é necessário gerar uma quantidade exorbitante de hashes por segundo para se achar uma hash com propriedades desejadas. Já vimos que é virtualmente impossível achar uma hash específica, mas e um conjunto de hashes? Tente por exemplo achar uma hash que inicie com o número **1** na forma hexadecimal (digite na caixa de texto acima). Não são necessárias muitas tentativas para achar o número **9**, ou também a letra **d**. 
 
 Agora tente achar algo que gere uma hash iniciando em **0**. Vou te poupar do trabalho: **o número é 39**. Quer um desafio ainda mais difícil? Tente achar uma hash que inicie em **5 zeros**. Esse é ainda mais complicado: **596138**. Com **7 zeros**? Não é preciso ir muito mais longe, **665782** já resolve o problema, mas além dele, o próximo que inicia com 7 zeros é apenas **81308074**! Embora seja fácil encontrar hashes com pequenos número de zeros usando apenas um processador e um script em Python, a dificuldade aumenta imensamente conforme a ''raridade'' da descoberta aumenta. Embora tenha sido relativamente fácil encontrar todos os números anteriores, o número **426479724**, que inicia com **8 zeros**, exigiu cerca de 30 minutos ou duas xícaras de café (de fato é o único com 8 zeros menor que 1 trilhão).
 
@@ -85,8 +85,8 @@ Note que as transações são anunciadas publicamente para todos os nodos, fican
 O bloco nada mais é do que uma lista de transações. O bloco é composto de 6 campos, que serão explicados mais adiante:
 
 - **Versão**: versão do bloco.
-- **Hash do bloco anterior**: SHA-256 do bloco anterior.
-- **Hash das transações**: SHA-256 da raiz da [árvore de Merkle](https://en.wikipedia.org/wiki/Merkle_tree) de todas as transações. Essa é uma hash combinada de todas as transações para o bloco possuir tamanho fixo. Assim, o esforço computacional para minerar um bloco com 1 ou 1000 transações é o mesmo.
+- **Hash do bloco anterior**: SHA256 do bloco anterior.
+- **Hash das transações**: SHA256 da raiz da [árvore de Merkle](https://en.wikipedia.org/wiki/Merkle_tree) de todas as transações. Essa é uma hash combinada de todas as transações para o bloco possuir tamanho fixo. Assim, o esforço computacional para minerar um bloco com 1 ou 1000 transações é o mesmo.
 - **Tempo**: convenção de tempo como segundos transcorridos desde 1970-01-01T00:00 UTC.
 - **Target**: número de 256 bits (assim como a hash) que define a dificuldade do bloco ao ser minerado.
 - **Nonce**: número de 32 bits que pode ser variado livremente.
@@ -133,7 +133,7 @@ Quando a recompensa for zero, nenhuma nova Bitcoin poderá ser criada, mas os bl
 
 Embora a Bitcoin tenha a capacidade de ser extremamente anônima, por vários motivos ela não é. Como todas as transações são públicas, pessoas podem juntar informações suficientes suas seguindo o rastro das moedas: basta saber onde um dos pagamentos foi parar e seguir as transações de volta até chegar na sua carteira, especialmente se você divulgou seus endereços de recebimento.
 
-Isso não significa que esses problemas não podem ser diminuidos. Um dos métodos é utilizar um serviço de mixing, conhecido como eWallet, onde centenas de usuários enviam fundos para uma carteira, que reenvia os fundos (em quantidades diferentes dos recebidos ou em várias porções) para a carteira final. Nesse esquema, não há como identificar quais moedas foram para quem. Supondo que 10 usuários enviem 1 BTC cada para a carteira, que redistribua para outros 10 usuários. Não há como saber quem enviou quanto para quem. Para reforçar o anonimato, pode-se usar uma cadeia de mais de um eWallet, fazendo o rastreamento extremamente difícil.
+Isso não significa que esses problemas não podem ser diminuídos. Um dos métodos é utilizar um serviço de mixing, conhecido como eWallet, onde centenas de usuários enviam fundos para uma carteira, que reenvia os fundos (em quantidades diferentes dos recebidos ou em várias porções) para a carteira final. Nesse esquema, não há como identificar quais moedas foram para quem. Supondo que 10 usuários enviem 1 BTC cada para a carteira, que redistribua para outros 10 usuários. Não há como saber quem enviou quanto para quem. Para reforçar o anonimato, pode-se usar uma cadeia de mais de um eWallet, fazendo o rastreamento extremamente difícil.
 
 E antes que você pense que anonimato não é importante, imagine que algum atacante consiga a informação de quanto dinheiro você guarda debaixo do seu colchão digital, e queira se apoderar das suas chaves privadas. Ele poderia rastrear os pagamentos que você fez e utilizá-los para conseguir dados pessoais sensíveis, mesmo partindo somente das suas chaves públicas.
 
