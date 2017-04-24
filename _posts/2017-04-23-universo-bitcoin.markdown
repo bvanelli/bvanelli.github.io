@@ -86,7 +86,7 @@ O bloco nada mais é do que uma lista de transações. O bloco é composto de 6 
 
 - **Versão**: versão do bloco.
 - **Hash do bloco anterior**: SHA-256 do bloco anterior.
-- **Hash das transações**: SHA-256 da raiz da [árvore de Merkle](https://en.wikipedia.org/wiki/Merkle_tree) de todas as transações. Essa é uma hash combinada de todas as transações para o bloco possuir tamanho fixo.
+- **Hash das transações**: SHA-256 da raiz da [árvore de Merkle](https://en.wikipedia.org/wiki/Merkle_tree) de todas as transações. Essa é uma hash combinada de todas as transações para o bloco possuir tamanho fixo. Assim, o esforço computacional para minerar um bloco com 1 ou 1000 transações é o mesmo.
 - **Tempo**: convenção de tempo como segundos transcorridos desde 1970-01-01T00:00 UTC.
 - **Target**: número de 256 bits (assim como a hash) que define a dificuldade do bloco ao ser minerado.
 - **Nonce**: número de 32 bits que pode ser variado livremente.
