@@ -1,0 +1,70 @@
+---
+published: true
+title: Entendendo SQL Injection 
+layout: post
+---
+
+> Esse é um artigo explicativo de como funciona o SQL Injection e seu perigo para a segurança da informação, além de como esse problema pode ser contornado facilmente e como testar suas aplicações. Lembre-se que testar aplicações sem a permissão do proprietário é crime!
+
+----------
+* auto-gen TOC:
+{:toc}
+----------
+
+## Introdução 
+
+O SQL Injection é um ataque à aplicações que consiste em injetar comandos SQL que serão executados na máquina alvo. E isso pode, a princípio, parecer confuso. Mas segundo a OWASP ( Open Web Application Security Project), [Injection representa um dos 10 maiores riscos para aplicações](https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet), incluindo aí ataques de SQL Injection, Command Injection e Buffer Overflow.
+
+No entanto, é preocupante que uma aplicação que utiliza banco de dados, o que se resume a praticamente qualquer aplicação atual, possa ser explorada para executar comandos maliciosos arbtirários de um atacante. Em outras palavras, um ataque bem-sucedido poderia inserir e remover tabelas de um banco, ou mesmo enviar dados sensíveis de volta ao atacante, ferindo os [pilares da segurança da informação](https://pt.wikipedia.org/wiki/Seguran%C3%A7a_da_informa%C3%A7%C3%A3o#Conceitos_de_seguran.C3.A7a).
+
+## Como Injetar comandos?
+
+Você deve estar se perguntando: como *exatamente* alguém conseguiria injetar comandos em uma aplicação? Suponha que você escreva sua lista de compras mas mande outra pessoa ao mercado. Sua lista contém apenas um item, e a pessoa irá executar mentalmente a ação `COMPRAR`. Se sua lista contém, por exemplo, `AÇÚCAR`, então a pessoa, ao ler a lista, processaria `COMPRAR AÇÚCAR`. Mas você não está contente com isso, então escreve uma nova lista, contendo a string `AÇÚCAR E CHOCOLATE`. Logo, a pessoa que receber essa lista irá executar o comando de `COMPRAR AÇÚCAR E CHOCOLATE`.
+
+Agora iremos injetar um comando que queremos que seja executado, algo que o programa original não estava preparado para receber. Vamos escrever `AÇÚCAR E PULAR DA JANELA`. O resultado? Bem, `COMPRAR AÇÚCAR E PULAR DA JANELA`. Talvez uma pessoa seja razoável o suficiente para não seguir esse conselho, mas uma mente robótica não pensaria duas vezes.
+
+## Exemplos de Injection em Query
+
+
+Mesmo que Injection valha para diversos tipos de aplicações e banco de dados, vamos dar uma olhada no SQL (Structured Query Language). Tomemos por exemplo uma query simples de busca:
+
+```sql
+SELECT * from tabela_usuarios WHERE usuario=''; 
+```
+
+Essa busca retorna todas as colunas da ``tabela_usuarios`` com nome de usuário igual à '' (vazio). No entanto, esse nome de usuário pode vir de uma outra função, como uma caixa de busca. É comum em muitas implementações as pessoas formarem o query SQL à partir da união de várias strings. Tomemos por exemplo uma implementação rápida em PHP:
+
+```php
+<?php
+
+$query = "SELECT * from tabela_usuarios" 
+       . "WHERE usuario='" . $usuario . "'";
+
+$result = mysql_query($query);
+
+?>
+```
+
+Embora essa implementação funcione, ela é fácilmente quebrável. Basta, por exemplo, digitar o caractere `'` na variável ``$usuario``. O resultado será:
+
+```sql
+SELECT * from tabela_usuarios WHERE usuario='''; 
+```
+
+O que gerará um erro interno no programa, pois a segunda aspa fecha a primeira, mas a terceira não é fechada. Podemos, no entanto, inserir coisas mais interessantes como `' OR '1'='1`. O resultado disso será:
+
+```sql
+SELECT * from tabela_usuarios WHERE usuario='' OR '1'='1';
+```
+
+Que não só é uma query válida, como retorna todo o conteúdo de ``tabela_usuarios``, pois a condição `'1'='1'` é sempre satisfeita. Já de cara é possível perceber como essa vulnerabilidade é perigosa. Bastaria uma simples busca com a string `'; DROP TABLE tabela_usuarios --` para que a tabela atual fosse completamente removida, já que os dois traços funcionam como comentário no SQL.
+
+```sql
+SELECT * from tabela_usuarios WHERE usuario=''; DROP TABLE tabela_usuarios --';
+```
+
+## Se protegendo de SQL Injection
+
+![xcdc](https://imgs.xkcd.com/comics/exploits_of_a_mom.png)
+
+Não tem jeito: de uma forma ou de outra, se você trabalha com banco de dados, suas aplicações terão que tratar das entradas do usuário, processo conhecido como *sanitizing*. A OWASP divulga um [manual de métodos de defesa contra SQLi](https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet). Sumarizando, existem três formas principais de proteção: 
