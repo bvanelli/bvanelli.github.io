@@ -78,7 +78,7 @@ No entanto, cada transação precisa ser assinada para ser válida. Isso é feit
 
 Uma propriedade matemática dessas chaves é que somente a chave privada pode assinar mensagens, e a chave pública pode ser utilizada para verificar a autenticidade, se quem enviou a transação realmente possui a chave privada, e também verificar integridade, se essa transação não foi alterada no caminho. É extremamente implausível computacionalmente para a tecnologia atual atacar por força bruta as chaves, portanto, **nem mesmo o dono das Bitcoins pode resgatá-las caso a chave privada seja perdida.**
 
-Note que as transações são anunciadas publicamente para todos os nodos, de forma que qualquer um pode ter registro das transações que vão sendo feitas. Mas para realmente consolidar as transações, elas são reunidas em blocos.
+Note que as transações são anunciadas publicamente para todos os nodos, ficando disponível em chamados ledgers, de forma que qualquer um pode ter registro das transações que vão sendo feitas. Mas para realmente consolidar as transações, elas são reunidas em blocos pelos mineradores de Bitcoin para que tenham validade. **Uma transação só é válida após ser adicionada em um bloco**.
 
 ## Bloco
 
@@ -105,7 +105,7 @@ O objetivo da Bitcoin é ter um bloco minerado a cada 10 minutos. Com o aumento 
 
 Para minerar, basta utilizar o algoritmo ``SHA256(SHA256(bloco))`` e comparar se o resultado é menor que o **target**. Se for, você minerou com sucesso e pode receber suas Bitcoins. Caso contrário, você deve incrementar o **Nonce** e tentar novamente. O processo de minerar consiste em **tentar várias combinações de transações e Nonce até achar uma configuração com o número de zeros correto (hash menor que o target)**. Embora pareça simples, note que cada 0 adicionado aumenta exponencialmente o trabalho necessário. Você pode comprovar isso tentando achar qualquer valor que gere uma hash que inicie com 10 zeros!
 
-Os blocos são minerados por um único motivo: manter a blockchain consistente e registrar as transações. Uma vez que uma transação é adicionada em um bloco, ela está confirmada, e cada novo bloco que é gerado à sua frente resulta em mais uma confirmação. Como todos os nodos na rede podem ter sua própria cópia do blockchain, todos podem verificar que as transações e as hashes são válidas.
+Os blocos são minerados por um único motivo: manter a blockchain consistente e registrar as transações. Uma vez que uma transação é adicionada em um bloco, ela está confirmada, e cada novo bloco que é gerado à sua frente resulta em mais uma confirmação. Como todos os nodos na rede podem ter sua própria cópia do blockchain, todos podem verificar que as transações e as hashes são válidas. **O blockchain nada mais é do que um banco de dados de transações.**
 
 ### Dificuldade com o tempo
 
@@ -119,6 +119,8 @@ A escolha de uma cadeia de blocos não é à toa: supondo que alguém queira gas
 
 As transações, mesmo sendo completamente públicas, estão seguras pois **a menor alteração no bloco implica em uma solução completamente diferente para o Nonce, que implica em resolver o problema computacional praticamente impossível de superar todos os outros mineradores juntos**.
 
+No entanto, como já dito, as transações só são válidas quando adicionadas à algum bloco. Isso quer dizer que pessoas vão tentar se aproveitar desse artifício para poder gastarem duas vezes a mesma quantidade de Bitcoin. Supondo que A tenha uma quantidade Y de Bitcoins em sua carteira. Então, A decide fazer um pagamento de Y para B e outro pagamento de Y para C. **Fica claro que uma das transações não será completada**, pois só uma das duas transações poderá ser confirmada, sendo a segunda descartada pelos mineradores. Se ele comprou de B e C, um dos dois não receberá o pagamento. Por isso, **é necessário esperar uma quantidade mínima de confirmações para ela ser considerada segura**. Para comprar um café, talvez nenhuma confirmação seja necessária, para comprar em uma loja online, talvez um número de 6 confirmações seja suficiente, mas para comprar um carro, um número de 100 confirmações pode ser requerido pelo vendedor. Embora seja uma definição arbitrária, **é comum considerar 6 blocos como mais do que suficiente para comprovar um pagamento**.
+
 ### Porque minerar?
 
 Mas você deve estar se perguntando: porque alguém gastaria tempo e processamento para tentar minerar um bloco? A resposta é simples: todo bloco possui uma recompensa!
@@ -126,3 +128,33 @@ Mas você deve estar se perguntando: porque alguém gastaria tempo e processamen
 A recompensa é inicialmente **50 BTC** e é cortada ao meio a cada **210,000 blocos**, ou aproximadamente 4 anos. **O número máximo de Bitcoins que serão produzidas será de 21,000,000 BTC**, portanto, a recompensa passará de 6,25 BTC diretamente para 0 BTC.
 
 Quando a recompensa for zero, nenhuma nova Bitcoin poderá ser criada, mas os blocos continuarão a ser gerados, porque as transações continuarão acontecendo. Acredita-se que, com o aumento do número de transações, a recompensa virá através das **taxas de transação**, que são valores pequenos que os usuários "doam" para os mineradores para que suas transações tenham preferência ao serem adicionadas aos blocos. O minerador, ao minerar uma grande quantidade de transações por vez, garante que receberá uma quantia maior por taxas, que serve como estímulo para continuar a mineração.
+
+## Anonimato
+
+Embora a Bitcoin tenha a capacidade de ser extremamente anônima, por vários motivos ela não é. Como todas as transações são públicas, pessoas podem juntar informações suficientes suas seguindo o rastro das moedas: basta saber onde um dos pagamentos foi parar e seguir as transações de volta até chegar na sua carteira, especialmente se você divulgou seus endereços de recebimento.
+
+Isso não significa que esses problemas não podem ser diminuidos. Um dos métodos é utilizar um serviço de mixing, conhecido como eWallet, onde centenas de usuários enviam fundos para uma carteira, que reenvia os fundos (em quantidades diferentes dos recebidos ou em várias porções) para a carteira final. Nesse esquema, não há como identificar quais moedas foram para quem. Supondo que 10 usuários enviem 1 BTC cada para a carteira, que redistribua para outros 10 usuários. Não há como saber quem enviou quanto para quem. Para reforçar o anonimato, pode-se usar uma cadeia de mais de um eWallet, fazendo o rastreamento extremamente difícil.
+
+E antes que você pense que anonimato não é importante, imagine que algum atacante consiga a informação de quanto dinheiro você guarda debaixo do seu colchão digital, e queira se apoderar das suas chaves privadas. Ele poderia rastrear os pagamentos que você fez e utilizá-los para conseguir dados pessoais sensíveis, mesmo partindo somente das suas chaves públicas.
+
+## Dogecoin
+
+Após a criação da Bitcoin, inúmeras outras criptomoedas foram propostas e implementadas. Você mesmo pode criar sua própria moeda (embora talvez a parte difícil seja fazer as pessoas acharem que ela tem algum valor), já que os códigos dessas moedas são abertos.
+
+Uma dessas moedas que chama atenção é a [Dogecoin](http://dogecoin.com/), criada em 6 de dezembro de 2013. Embora ela seja baseada em um [meme](https://en.wikipedia.org/wiki/Doge_(meme)), essa moeda possui uma proposta interessante de implementação.
+
+<img src="https://cloud.githubusercontent.com/assets/8211602/25319397/ebe49c18-2873-11e7-98a5-786928ee1b4e.png" style="width: 30%;"/>
+
+Em primeiro lugar, ela foi desenhada para ser uma moeda de rápida confirmação: 1 minuto por bloco, em comparação com os 10 minutos da Bitcoin ou 2.5 minutos da Litecoin. A recompensa por bloco variou entre aleatória (Vai entender?) nas primeiras iterações, foi fixada em alguns valores e hoje é fixa em 10,000. Esse valor deve ser mantido para sempre, que difere da Bitcoin, que é limitada.
+
+A Dogecoin também usa o algoritmo de proof-of-work [scrypt](https://en.bitcoin.it/wiki/Scrypt_proof_of_work). Contrário ao SHA256, esse algoritmo visa reduzir a eficiência de circuitos especializados como FPGAs e ASICs, que são capazes de calcular uma quantidade tremenda de hashes por segundo. Para tal, o scrypt possui uma sequência de cálculos a serem realizados que dependem dos cálculos anteriores. Para calcular a hash, é necessário uso intenso de CPU e memória, que em teoria deveria dificultar a monopolização da moeda por hardware especializado. Nesse caso há uma troca entre memória e CPU: quando o consumo de memória aumenta, o consumo de CPU deveria diminuir e vice-versa.
+
+Há várias críticas à Dogecoin. Uma delas é que **esse modelo de limitar a mineração aos usuários com seus computadores comuns falhou miseravelmente**. O mercado foi rapidamente dominado pelo uso de GPUs (por serem mais rápidas que as CPUs embora não devessem ser), FPGAs e ASICs, justamente o que se queria evitar.
+
+Outra crítica é que o scrypt não foi tão testado e utilizado quanto o SHA256, e pode ser suscetível à ataques ainda não conhecidos no futuro.
+
+## Conclusões
+
+Esse pequeno artigo mostrou uma visão geral de como funcionam as criptomoedas, em especial a Bitcoin. Elas apresentam uma alternativa viável para serem utilizadas por serem seguras e eficientes, além de totalmente digitais.
+
+Vale lembrar que, embora muitos serviços já aceitem Bitcoin, ela ainda não é reconhecida como uma moeda real em diversos países, e talvez não seja uma boa ideia investir suas economias em Bitcoins. Mas é certo de que seus conceitos e seu modelo descentralizado mudaram o modo como o mundo pensa sobre dinheiro.
