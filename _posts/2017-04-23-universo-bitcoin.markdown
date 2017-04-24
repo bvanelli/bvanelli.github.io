@@ -13,7 +13,7 @@ layout: post
 
 ## Introdução
 
-A primeira ideia de criptomoeda surgiu em 2008 em um pequeno artigo de Satoshi Nakamoto intitulado ["Bitcoin: A peer-to-peer electronic cash system"](https://bitcoin.org/bitcoin.pdf). Embora ninguém realmente saiba a identidade verdadeira de Nakamoto, seu artigo de apenas 9 páginas revolucionou o mundo das moedas digitais.
+A primeira ideia de criptomoeda descentralizada surgiu em 2008 em um pequeno artigo de Satoshi Nakamoto intitulado ["Bitcoin: A peer-to-peer electronic cash system"](https://bitcoin.org/bitcoin.pdf). Embora ninguém realmente saiba a identidade verdadeira de Nakamoto, seu artigo de apenas 9 páginas revolucionou o mundo das moedas digitais.
 
 A ideia geral das criptomoedas é bem simples: manter todas as transações e carteiras seguras através de criptografia, fazendo com que só você tenha acesso à sua carteira e só você posso gastar suas criptomoedas. Em palavras mais simples, o sistema não é baseado em confiança, e sim em prova criptográfica.
 
