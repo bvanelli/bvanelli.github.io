@@ -32,7 +32,7 @@ Mesmo que Injection valha para diversos tipos de aplicações e banco de dados, 
 SELECT * from tabela_usuarios WHERE usuario=''; 
 ```
 
-Essa busca retorna todas as colunas da ``tabela_usuarios`` com nome de usuário igual à '' (vazio). No entanto, esse nome de usuário pode vir de uma outra função, como uma caixa de busca. É comum em muitas implementações as pessoas formarem o query SQL à partir da união de várias strings. Tomemos por exemplo uma implementação rápida em PHP:
+Essa busca retorna todas as colunas da ``tabela_usuarios`` com nome de usuário igual à '' (vazio). No entanto, esse nome de usuário pode vir de uma outra função, como uma caixa de busca. É comum em muitas implementações as pessoas formarem o query SQL de forma dinâmica, a partir da união de várias strings. Tomemos por exemplo uma implementação rápida em PHP:
 
 ```php
 <?php
@@ -45,7 +45,7 @@ $result = mysql_query($query);
 ?>
 ```
 
-Embora essa implementação funcione, ela é fácilmente quebrável. Basta, por exemplo, digitar o caractere `'` na variável ``$usuario``. O resultado será:
+Embora essa implementação funcione, ela é facilmente quebrável. Basta, por exemplo, digitar o caractere `'` na variável ``$usuario``. O resultado será:
 
 ```sql
 SELECT * from tabela_usuarios WHERE usuario='''; 
@@ -57,14 +57,73 @@ O que gerará um erro interno no programa, pois a segunda aspa fecha a primeira,
 SELECT * from tabela_usuarios WHERE usuario='' OR '1'='1';
 ```
 
-Que não só é uma query válida, como retorna todo o conteúdo de ``tabela_usuarios``, pois a condição `'1'='1'` é sempre satisfeita. Já de cara é possível perceber como essa vulnerabilidade é perigosa. Bastaria uma simples busca com a string `'; DROP TABLE tabela_usuarios --` para que a tabela atual fosse completamente removida, já que os dois traços funcionam como comentário no SQL.
+Que não só é uma query válida, como retorna todo o conteúdo de ``tabela_usuarios``, pois a condição `'1'='1'` é sempre satisfeita. Já de cara é possível perceber como essa vulnerabilidade é perigosa. Bastaria uma simples busca com a string `'; DROP TABLE tabela_usuarios; --` para que a tabela atual fosse completamente removida, já que os dois traços funcionam como comentário no SQL.
 
 ```sql
-SELECT * from tabela_usuarios WHERE usuario=''; DROP TABLE tabela_usuarios --';
+SELECT * from tabela_usuarios WHERE usuario=''; DROP TABLE tabela_usuarios; --';
 ```
 
 ## Se protegendo de SQL Injection
 
+Não tem jeito: de uma forma ou de outra, se você trabalha com banco de dados, suas aplicações terão que tratar das entradas do usuário, processo conhecido como *sanitizing*.
+
 ![xcdc](https://imgs.xkcd.com/comics/exploits_of_a_mom.png)
 
-Não tem jeito: de uma forma ou de outra, se você trabalha com banco de dados, suas aplicações terão que tratar das entradas do usuário, processo conhecido como *sanitizing*. A OWASP divulga um [manual de métodos de defesa contra SQLi](https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet). Sumarizando, existem três formas principais de proteção: 
+A OWASP divulga um [manual de métodos de defesa contra SQLi](https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet). Sumarizando, existem três formas principais de proteção: 
+
+### Utilizar métodos prontos da linguagem
+
+Essa é uma metodologia eficaz e muito simples de ser implementada, e deveria ser como todos os programadores aprendem SQL. Ela implica em primeiro escrever todo o código SQL, para depois passar cada parâmetro individualmente. Tomemos por exemplo a seguinte implementação em Java do primeiro exemplo:
+
+```java
+String query = "SELECT * FROM tabela_usuarias WHERE usuario = ? ";
+  
+PreparedStatement pstmt = connection.prepareStatement( query );
+pstmt.setString( 1, myusuario); 
+```
+
+Nessa ocasião, mesmo que o input tivesse caracteres estranhos como o `'`, a busca seria literal, ou seja, a query buscaria uma aspa armazenada no banco de dados.
+
+### Validar dados de entrada manualmente (whitelist)
+
+Essa técnica basicamente visa eliminar os vetores de ataque recusando queries com caracteres suspeitos. Exemplos desse tipo de queries são strings de entrada contendo `1=1`, `<script>` ou mesmo `'`, salvo nos casos onde esses caracteres são legítimos, como apóstrofos em nomes. **Validar a entrada é um método recomendado mesmo quando outros métodos de proteção são utilizados**.
+
+### Escapar dados de entrada
+
+Consiste em converter dados de entrada em caracteres que não causam problemas. O MySQL, por exemplo, suporta as seguintes conversões:
+
+```
+ NUL (0x00) --> \0
+ BS  (0x08) --> \b
+ TAB (0x09) --> \t
+ LF  (0x0a) --> \n
+ CR  (0x0d) --> \r
+ SUB (0x1a) --> \Z
+ "   (0x22) --> \"
+ %   (0x25) --> \%
+ '   (0x27) --> \'
+ \   (0x5c) --> \\
+ _   (0x5f) --> \_ 
+```
+
+## Testando suas aplicações
+
+Por muitas vezes é difícil testar suas aplicações para todos os vetores de ataque e todos os formulários existentes. Por isso, existem ferramentas automatizadas para teste das aplicações que fazem milhares de testes por segundo. Vamos utilizar o [**sqlmap**](http://sqlmap.org/) (`apt install sqlmap`). O site alvo será o [Hackyourselffirst](https://hackyourselffirst.troyhunt.com), um site dedicado a mostrar esse tipo de vulnerabilidade.
+
+Uma análise inicial mostra que a página utiliza requisições do tip GET, que provavelmente são dados como instruções ao banco de dados, como na variável `orderby`.
+
+```
+https://hackyourselffirst.troyhunt.com/Make/1?orderby=1
+```
+
+Vamos tentar passar um caractere proibido e ver como site responde.
+
+```
+https://hackyourselffirst.troyhunt.com/Make/1?orderby='
+```
+
+<img src="https://cloud.githubusercontent.com/assets/8211602/26791649/20b548ca-49ee-11e7-8642-8a3d16e50f91.png" style="width: 100%;"/>
+
+Um bom sinal! Os erros não são tratados, o que significa que a aplicação pode ser vulnerável. Vamos rodar o **sqlmap** e tentar explorar essa variável.
+
+
