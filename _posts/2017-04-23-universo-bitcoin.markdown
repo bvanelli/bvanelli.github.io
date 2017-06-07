@@ -43,7 +43,7 @@ Abaixo há uma caixa de texto que computa um algoritmo de hash famoso, o [SHA256
 <div class="fancybox">
 <h3 style="margin-top: 0rem;">SHA256</h3>
 <input type="text" id="myInput" style="width: 100%; height: 40px; font-size:22px;" oninput="computeHash()">
-<p id="sha-output" style="font-size: 16px; margin-bottom: 0rem; font-family: monospace; word-wrap:break-word;"></p>
+<p id="sha-output" style="font-size: 16px; margin-bottom: 0rem; font-family: 'Roboto Mono', monospace; word-wrap:break-word;"></p>
 <script src="https://cdn.rawgit.com/chrisveness/crypto/9a15aa9/sha256.js"></script>
 <script>
 function computeHash() {
