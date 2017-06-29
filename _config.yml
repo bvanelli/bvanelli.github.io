@@ -8,4 +8,4 @@ description: Um tutorial compreensivo de como falhar miseravelmente.
 paginate: 10
 encoding: UTF-8
 permalink: pretty
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
