@@ -111,7 +111,7 @@ Os blocos são minerados por um único motivo: manter a blockchain consistente e
 
 A próxima figura mostra como a dificuldade dos blocos cresceu com o tempo. Note que a dificuldade também é medida em PHash/s, ou Peta Hashes por segundo (**1P = 10<sup>15</sup>**), uma produção combinada exorbitante de hashes!
 
-<img src="https://bitcoin.sipa.be/speed-lin-ever.png" style="width: 100%;"/>
+<img src="https://user-images.githubusercontent.com/8211602/33445169-5135a04a-d5e3-11e7-896b-64b9d90555a8.png" style="width: 100%;"/>
 
 ### Proteção contra fraude
 
