@@ -82,7 +82,7 @@ Note que as transações são anunciadas publicamente para todos os nodos, fican
 
 ## Bloco
 
-O bloco nada mais é do que uma lista de transações. O bloco é composto de 6 campos, que serão explicados mais adiante:
+O bloco nada mais é do que uma lista de transações. O bloco é composto de 6 campos, que são explicados a seguir:
 
 - **Versão**: versão do bloco.
 - **Hash do bloco anterior**: SHA256 do bloco anterior.
