@@ -29,7 +29,7 @@ Sua chance de acertar o cartão é **uma em cinquenta milhões, sessenta e três
 
 O jogo ainda te dá a chance de jogar vários cartões de uma só vez em um cartão só, preenchendo mais de 6 números. Por exemplo, ao jogar 7 números, você estará jogando o equivalente a 7 cartões diferentes, e o preço do cartão subirá proporcionalmente. Não existe nenhuma vantagem em jogar 7 cartões ou 6 números ou 1 cartão com 7 números.
 
-Você pode alterar os parâmetros abaixo e ver como a sua probabilidade muda quanto mais números você joga. Tente alterar as propriedades do concurso! Quantos números você precisa jogar para ter 50% de chance de ganhar, o equivalente a ganhar no cara-ou-coroa? **A reposta é 54.** Mesmo jogando 59 números em 60, sua chance seria míseros 90%.
+Você pode alterar os parâmetros abaixo e ver como a sua probabilidade muda quanto mais números você joga. Tente alterar as propriedades do concurso! Quantos números você precisa jogar para ter 50% de chance de ganhar, o equivalente a ganhar no cara-ou-coroa? **A reposta é 54.** Mesmo jogando 59 números em 60, sua chance seria de 90%.
 
 <div class="fancybox">
 <h3 style="margin-top: 0rem; margin-bottom: 1rem">Probabilidade de Ganhar</h3>
@@ -205,23 +205,126 @@ Que como você pode perceber de antemão, é pequeno para valores pequenos de n,
 <script>
 var ctx = document.getElementById("myOtherChart").getContext('2d');
 var myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'scatter',
     data: {
-        labels: [1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,20000,30000,40000,50000,60000,70000,80000,90000,1e+05,2e+05,3e+05,4e+05,5e+05,6e+05,7e+05,8e+05,9e+05,1e+06,2e+06,3e+06,4e+06,5e+06,6e+06,7e+06,8e+06,9e+06,1e+07,2e+07,3e+07,4e+07,5e+07,6e+07,7e+07,8e+07,9e+07,1e+08,2e+08,3e+08,4e+08,5e+08,6e+08],
         datasets: [{
             label: 'Probabilidade de Ganhar',
-            data: [1.9974e-08,3.9949e-08,5.9923e-08,7.9898e-08,9.9872e-08,1.1985e-07,1.3982e-07,1.598e-07,1.7977e-07,1.9974e-07,3.9949e-07,5.9923e-07,7.9898e-07,9.9872e-07,1.1985e-06,1.3982e-06,1.598e-06,1.7977e-06,1.9974e-06,3.9949e-06,5.9923e-06,7.9898e-06,9.9872e-06,1.1985e-05,1.3982e-05,1.5979e-05,1.7977e-05,1.9974e-05,3.9948e-05,5.9922e-05,7.9895e-05,9.9867e-05,0.00011984,0.00013981,0.00015978,0.00017975,0.00019972,0.00039941,0.00059906,0.00079866,0.00099823,0.0011978,0.0013972,0.0015967,0.0017961,0.0019955,0.0039869,0.0059744,0.007958,0.0099375,0.011913,0.013885,0.015853,0.017816,0.019776,0.039162,0.058163,0.076789,0.095047,0.11294,0.13049,0.14768,0.16454,0.18106,0.32934,0.45077,0.55021,0.63165,0.69834,0.75296,0.79769,0.83432,0.86432,0.98159,0.9975,0.99966,0.99995,0.99999],
+            data: [{x:1.0,y:1.9974e-08},
+            {x:2.0,y:3.9949e-08},
+            {x:3.0,y:5.9923e-08},
+            {x:4.0,y:7.9898e-08},
+            {x:5.0,y:9.9872e-08},
+            {x:6.0,y:1.1985e-07},
+            {x:7.0,y:1.3982e-07},
+            {x:8.0,y:1.598e-07},
+            {x:9.0,y:1.7977e-07},
+            {x:10.0,y:1.9974e-07},
+            {x:20.0,y:3.9949e-07},
+            {x:30.0,y:5.9923e-07},
+            {x:40.0,y:7.9898e-07},
+            {x:50.0,y:9.9872e-07},
+            {x:60.0,y:1.1985e-06},
+            {x:70.0,y:1.3982e-06},
+            {x:80.0,y:1.598e-06},
+            {x:90.0,y:1.7977e-06},
+            {x:100.0,y:1.9974e-06},
+            {x:200.0,y:3.9949e-06},
+            {x:300.0,y:5.9923e-06},
+            {x:400.0,y:7.9898e-06},
+            {x:500.0,y:9.9872e-06},
+            {x:600.0,y:1.1985e-05},
+            {x:700.0,y:1.3982e-05},
+            {x:800.0,y:1.5979e-05},
+            {x:900.0,y:1.7977e-05},
+            {x:1000.0,y:1.9974e-05},
+            {x:2000.0,y:3.9948e-05},
+            {x:3000.0,y:5.9922e-05},
+            {x:4000.0,y:7.9895e-05},
+            {x:5000.0,y:9.9867e-05},
+            {x:6000.0,y:0.00011984},
+            {x:7000.0,y:0.00013981},
+            {x:8000.0,y:0.00015978},
+            {x:9000.0,y:0.00017975},
+            {x:10000.0,y:0.00019972},
+            {x:20000.0,y:0.00039941},
+            {x:30000.0,y:0.00059906},
+            {x:40000.0,y:0.00079866},
+            {x:50000.0,y:0.00099823},
+            {x:60000.0,y:0.0011978},
+            {x:70000.0,y:0.0013972},
+            {x:80000.0,y:0.0015967},
+            {x:90000.0,y:0.0017961},
+            {x:100000.0,y:0.0019955},
+            {x:200000.0,y:0.0039869},
+            {x:300000.0,y:0.0059744},
+            {x:400000.0,y:0.007958},
+            {x:500000.0,y:0.0099375},
+            {x:600000.0,y:0.011913},
+            {x:700000.0,y:0.013885},
+            {x:800000.0,y:0.015853},
+            {x:900000.0,y:0.017816},
+            {x:1000000.0,y:0.019776},
+            {x:2000000.0,y:0.039162},
+            {x:3000000.0,y:0.058163},
+            {x:4000000.0,y:0.076789},
+            {x:5000000.0,y:0.095047},
+            {x:6000000.0,y:0.11294},
+            {x:7000000.0,y:0.13049},
+            {x:8000000.0,y:0.14768},
+            {x:9000000.0,y:0.16454},
+            {x:10000000.0,y:0.18106},
+            {x:20000000.0,y:0.32934},
+            {x:30000000.0,y:0.45077},
+            {x:40000000.0,y:0.55021},
+            {x:50000000.0,y:0.63165},
+            {x:60000000.0,y:0.69834},
+            {x:70000000.0,y:0.75296},
+            {x:80000000.0,y:0.79769},
+            {x:90000000.0,y:0.83432},
+            {x:100000000.0,y:0.86432},
+            {x:200000000.0,y:0.98159},
+            {x:300000000.0,y:0.9975},
+            {x:400000000.0,y:0.99966},
+            {x:500000000.0,y:0.99995},
+            {x:600000000.0,y:0.99999}],
             borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
+            borderWidth: 1.5
         }]
     },
     options: {
         scales: {
             xAxes: [{
+                type:'logarithmic',
+                scaleLabel: {
+                    labelString: 'Concursos participados',
+                    display:true
+                }
             }],
             yAxes: [{
+                scaleLabel: {
+                    labelString: 'Probabilidade de Ganhar',
+                    display:true
+                }
             }]
         }
     }
 });
 </script>
+
+É incrível como o a probabilidade cai substituindo vários cartões em um mesmo concurso por apenas cartão em vários concursos. **Para ter aproximadamente 50% de chance de ganhar, você teria que participar de aproximadamente 30 milhões de concursos**.
+
+Na marca de 100 milhões de concursos, você já deve ter o seu prêmio, com 86% de chance. Mas para valores até 500 mil concursos, a probabilidade continua insignificante, de menos de 1%.
+
+## Mas existe uma chance... certo?
+
+Sim. A chance é infinitesimal, mas existe. Mas tenha em mente que ela é menor ou igual aos seguintes eventos:
+
+- Tirar coroa no cara ou coroa **25 vezes seguidas.**
+- Morrer em um acidente de avião. Sério.
+- Ser morto por um meteoro. Sério².
+- Jogar 9 dados e todos caírem com a face 6 voltada para cima.
+- Ganhar um prêmio Nobel (não que prêmios Nobel sejam distribuídos ao acaso).
+
+## Mas eu quero tentar!
+
+
