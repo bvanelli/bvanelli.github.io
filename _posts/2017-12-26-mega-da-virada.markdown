@@ -37,11 +37,9 @@ Você pode alterar os parâmetros abaixo e ver como a sua probabilidade muda qua
 <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.4.3/rzslider.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.4.3/rzslider.min.js"></script>
-<div ng-app="myapp">
-  <div ng-controller="TestController as vm">
-    <rzslider rz-slider-model="vm.totais.value" rz-slider-options="vm.totais.options" style="margin-bottom: 1rem"></rzslider>
+<div id="myapp" ng-controller="TestController as vm">
+    <rzslider rz-slider-model="vm.totais.value" rz-slider-options="vm.totais.options" style="margin-bottom: 1.5rem"></rzslider>
     <rzslider rz-slider-model="vm.numeros.value" rz-slider-options="vm.numeros.options"></rzslider>
-  </div>
 </div>
 <div style="margin-top: 1rem">Cartões totais do concurso: <b id="total_cards"></b></div>
 <div>Cartões totais jogados: <b id="chosen_cards"></b></div>
@@ -49,7 +47,7 @@ Você pode alterar os parâmetros abaixo e ver como a sua probabilidade muda qua
 <div>Chance de ganhar: <b id="chance"></b></div>
 
 <script>
-var myApp = angular.module('myapp', ['rzModule']);
+var myApp = angular.module('myappdom', ['rzModule']);
 
 myApp.controller('TestController', TestController);
 
@@ -119,10 +117,11 @@ function TestController() {
 	  }
     }
   }
-
+    
  updateProbability(vm.totais.value,vm.numeros.value);
 }
 
+angular.bootstrap(document.getElementById('myapp'), ['myappdom']);
 </script>
 </div>
 
@@ -141,7 +140,7 @@ Dentro de uma distribuição aleatória, é esperado que com o passar do tempo e
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script src="https://cdn.rawgit.com/jtblin/angular-chart.js/master/dist/angular-chart.min.js"></script>
 
-<canvas id="myChart" width="100" height="150" style="margin-bottom: 1rem"></canvas>
+<canvas id="myChart" width="65" height="150" style="margin-bottom: 1rem"></canvas>
 <script>
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
@@ -201,7 +200,7 @@ $$P_G = 1 - \left(\frac{50.063.859}{50.063.860}\right)^n$$
 
 Que como você pode perceber de antemão, é pequeno para valores pequenos de n, o que já era de se esperar: é preciso participar de muitos concursos para ter uma probabilidade alta de ganhar. Mas quantos exatamente? O gráfico a seguir mostra como a chance de ganhar varia com o número de concursos participados.
 
-<canvas id="myOtherChart" width="100" height="50" style="margin-bottom: 1rem"></canvas>
+<canvas id="myOtherChart" width="130" height="100" style="margin-bottom: 1rem"></canvas>
 <script>
 var ctx = document.getElementById("myOtherChart").getContext('2d');
 var myChart = new Chart(ctx, {
@@ -288,7 +287,10 @@ var myChart = new Chart(ctx, {
             {x:500000000.0,y:0.99995},
             {x:600000000.0,y:0.99999}],
             borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1.5
+            pointBackgroundColor: 'rgba(54, 162, 235, 1)', 
+            pointBorderWidth: 3,
+            pointRadius: 1,
+            showLine: true
         }]
     },
     options: {
@@ -327,4 +329,149 @@ Sim. A chance é infinitesimal, mas existe. Mas tenha em mente que ela é menor 
 
 ## Mas eu quero tentar!
 
+Eu sei que apesar de tudo sua mão está tremendo de ansiedade para jogar na Mega-Sena. Então eu montei uma tabela para planejar as suas chances de ganhar! Insira quantos números você quer apostar por concurso, quantos concursos quer participar e ele te dá a probabilidade de ganhar! Você ainda pode aumentar suas chances diminuindo a dificuldade ou diminuir o preço do cartão. Por fim, clique em apostar para testar sua sorte com um gerador de números aleatórios e veja se ganhou. Boa sorte!
 
+<div class="fancybox">
+<h3 style="margin-top: 0rem; margin-bottom: 1rem">Probabilidade de Ganhar</h3>
+
+<div id="myotherapp" ng-controller="FormController as vp">
+    <rzslider rz-slider-model="vp.totais.value" rz-slider-options="vp.totais.options" style="margin-bottom: 1.5rem"></rzslider>
+    <rzslider rz-slider-model="vp.numeros.value" rz-slider-options="vp.numeros.options" style="margin-bottom: 1.5rem"></rzslider>
+    <rzslider rz-slider-model="vp.preco.value" rz-slider-options="vp.preco.options" style="margin-bottom: 1.5rem"></rzslider>
+    <rzslider rz-slider-model="vp.concursos.value" rz-slider-options="vp.concursos.options" style="margin-bottom: 1.5rem"></rzslider>
+</div>
+<div style="margin-top: 1rem">Cartões totais do concurso: <b id="total_cards_final"></b></div>
+<div>Cartões totais jogados: <b id="chosen_cards_final"></b></div>
+<div>Preço por Aposta: <b id="preco_final"></b></div>
+<div>Chance por Aposta: <b id="chance_final"></b></div>
+<div>Concursos: <b id="concursos_final"></b></div>
+<div>Preço total: <b id="preco_ac_final"></b></div>
+<div>Chance total: <b id="chance_ac_final"></b></div>
+
+<script>
+var myApp = angular.module('myotherappdom', ['rzModule']);
+
+myApp.controller('FormController', FormController);
+
+var f = [];
+function factorial (n) {
+  if (n == 0 || n == 1)
+    return 1;
+  if (f[n] > 0)
+    return f[n];
+  return f[n] = factorial(n-1) * n;
+}
+
+function factoryProbability (vp) {
+  var t = vp.totais.value;
+  var n = vp.numeros.value;
+  var cards = Math.round(factorial(t)/factorial(t-6)/factorial(6));
+  var chosen_cards = Math.round(factorial(n)/factorial(6)/factorial(n-6));
+  var preco = chosen_cards * vp.preco.value;
+  var chance = chosen_cards/cards;
+  var chance_acumulada = 1 - Math.pow(1 - chance, vp.concursos.value);
+  document.getElementById("total_cards_final").innerHTML = cards;
+  document.getElementById("chosen_cards_final").innerHTML = chosen_cards;
+  document.getElementById("preco_final").innerHTML = 'R$ ' + preco.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+  document.getElementById("chance_final").innerHTML = (chance*100).toFixed(13) + '%';
+  document.getElementById("concursos_final").innerHTML = vp.concursos.value;
+  document.getElementById("preco_ac_final").innerHTML = 'R$ ' + (preco * vp.concursos.value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+  document.getElementById("chance_ac_final").innerHTML = (chance_acumulada*100).toFixed(13) + '%';
+}
+
+function FormController() {
+  var vp = this;
+
+  vp.totais = {
+    value: 60,
+    options: {
+      floor: 6,
+      ceil: 70,
+	  onChange: function(id) {
+        vp.numeros.options.maxLimit = vp.totais.value;
+		if(vp.numeros.value > vp.totais.value)
+			vp.numeros.value = vp.totais.value;
+
+        factoryProbability(vp);
+	  },
+	  translate: function(value, sliderId, label) {
+		switch(label) {
+		  case 'model':
+	        return '<b>Números totais</b>:' + value;
+		  default:
+			return value;
+		}
+	  }
+    }
+  }
+
+
+  vp.numeros = {
+    value: 6,
+    options: {
+      floor: 6,
+      ceil: 70,
+	  onChange: function(id) {
+        factoryProbability(vp);
+	  },
+      maxLimit: vp.totais.value,
+	  translate: function(value, sliderId, label) {
+		switch(label) {
+		  case 'model':
+	        return '<b>Números jogados</b>:' + value;
+		  default:
+			return value;
+		}
+	  }
+    }
+  }
+
+
+  vp.preco = {
+    value: 3.50,
+    options: {
+      floor: 0.01,
+      ceil: 5,
+      step: 0.01,
+      precision: 2,
+	  onChange: function(id) {
+        factoryProbability(vp);
+	  },
+      maxLimit: vp.totais.value,
+	  translate: function(value, sliderId, label) {
+		switch(label) {
+		  case 'model':
+	        return '<b>Preço de cada Aposta</b>: R$' + value.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+		  default:
+			return 'R$' + value.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+		}
+	  }
+    }
+  }
+
+  vp.concursos = {
+    value: 1,
+    options: {
+      floor: 1,
+      ceil: 10000,
+      logScale: true,
+	  onChange: function(id) {
+        factoryProbability(vp);
+	  },
+	  translate: function(value, sliderId, label) {
+		switch(label) {
+		  case 'model':
+	        return '<b>Concursos Participados</b>:' + value;
+		  default:
+			return value;
+		}
+	  }
+    }
+  }
+    
+  factoryProbability(vp);
+}
+
+angular.bootstrap(document.getElementById('myotherapp'), ['myotherappdom']);
+</script>
+</div>
