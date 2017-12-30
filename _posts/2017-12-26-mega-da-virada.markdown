@@ -2,6 +2,7 @@
 published: true
 title: A Matemática da Mega da Virada
 layout: post
+abstract: Na época de fim de ano, muitas pessoas voltam suas atenções para um evento probabilístico chamado Mega da Virada. Mas será que elas entendem a real chance de ganharem?
 ---
 
 <!-- Include MathJax to render LaTeX. This might not work -->
@@ -329,17 +330,21 @@ Sim. A chance é infinitesimal, mas existe. Mas tenha em mente que ela é menor 
 
 ## Mas eu quero tentar!
 
-Eu sei que apesar de tudo sua mão está tremendo de ansiedade para jogar na Mega-Sena. Então eu montei uma tabela para planejar as suas chances de ganhar! Insira quantos números você quer apostar por concurso, quantos concursos quer participar e ele te dá a probabilidade de ganhar! Você ainda pode aumentar suas chances diminuindo a dificuldade ou diminuir o preço do cartão. Por fim, clique em apostar para testar sua sorte com um gerador de números aleatórios e veja se ganhou. Boa sorte!
+Eu sei que apesar de tudo sua mão está tremendo de ansiedade para jogar na Mega-Sena. Então eu montei uma tabela para planejar as suas chances de ganhar! Insira quantos números você quer apostar por concurso, quantos concursos quer participar e ele te dá a probabilidade de ganhar! Você ainda pode aumentar suas chances diminuindo a dificuldade ou diminuir o preço do cartão. 
 
 <div class="fancybox">
 <h3 style="margin-top: 0rem; margin-bottom: 1rem">Probabilidade de Ganhar</h3>
 
 <div id="myotherapp" ng-controller="FormController as vp">
-    <rzslider rz-slider-model="vp.totais.value" rz-slider-options="vp.totais.options" style="margin-bottom: 1.5rem"></rzslider>
-    <rzslider rz-slider-model="vp.numeros.value" rz-slider-options="vp.numeros.options" style="margin-bottom: 1.5rem"></rzslider>
-    <rzslider rz-slider-model="vp.preco.value" rz-slider-options="vp.preco.options" style="margin-bottom: 1.5rem"></rzslider>
-    <rzslider rz-slider-model="vp.concursos.value" rz-slider-options="vp.concursos.options" style="margin-bottom: 1.5rem"></rzslider>
-</div>
+<rzslider rz-slider-model="vp.totais.value" rz-slider-options="vp.totais.options" style="margin-bottom: 1.5rem"></rzslider>
+<rzslider rz-slider-model="vp.numeros.value" rz-slider-options="vp.numeros.options" style="margin-bottom: 1.5rem"></rzslider>
+<rzslider rz-slider-model="vp.preco.value" rz-slider-options="vp.preco.options" style="margin-bottom: 1.5rem"></rzslider>
+<rzslider rz-slider-model="vp.concursos.value" rz-slider-options="vp.concursos.options" style="margin-bottom: 1.5rem"></rzslider>
+
+<center>
+<button ng-click="vp.resetar()" class="fancybutton" style="vertical-align:middle;"><span><i class="fa fa-refresh" aria-hidden="true"></i> Restaurar</span></button>
+</center>
+
 <div style="margin-top: 1rem">Cartões totais do concurso: <b id="total_cards_final"></b></div>
 <div>Cartões totais jogados: <b id="chosen_cards_final"></b></div>
 <div>Preço por Aposta: <b id="preco_final"></b></div>
@@ -347,6 +352,8 @@ Eu sei que apesar de tudo sua mão está tremendo de ansiedade para jogar na Meg
 <div>Concursos: <b id="concursos_final"></b></div>
 <div>Preço total: <b id="preco_ac_final"></b></div>
 <div>Chance total: <b id="chance_ac_final"></b></div>
+
+</div>
 
 <script>
 var myApp = angular.module('myotherappdom', ['rzModule']);
@@ -377,6 +384,7 @@ function factoryProbability (vp) {
   document.getElementById("concursos_final").innerHTML = vp.concursos.value;
   document.getElementById("preco_ac_final").innerHTML = 'R$ ' + (preco * vp.concursos.value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
   document.getElementById("chance_ac_final").innerHTML = (chance_acumulada*100).toFixed(13) + '%';
+  return chance_acumulada;
 }
 
 function FormController() {
@@ -453,7 +461,7 @@ function FormController() {
     value: 1,
     options: {
       floor: 1,
-      ceil: 10000,
+      ceil: 1000,
       logScale: true,
 	  onChange: function(id) {
         factoryProbability(vp);
@@ -468,10 +476,20 @@ function FormController() {
 	  }
     }
   }
+
+  vp.resetar = function() {
+    vp.totais.value = 60;
+    vp.numeros.value = 6;
+    vp.preco.value = 3.5;
+    vp.concursos.value = 1;
+    factoryProbability(vp);
+  }
     
   factoryProbability(vp);
 }
 
 angular.bootstrap(document.getElementById('myotherapp'), ['myotherappdom']);
 </script>
+
+
 </div>

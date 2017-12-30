@@ -2,6 +2,7 @@
 published: true
 title: Entendendo SQL Injection 
 layout: post
+abstract: Esse é um artigo explicativo de como funciona o SQL Injection e seu perigo para a segurança da informação, além de como esse problema pode ser contornado facilmente e como testar suas aplicações. Lembre-se que testar aplicações sem a permissão do proprietário é crime!
 ---
 
 > Esse é um artigo explicativo de como funciona o SQL Injection e seu perigo para a segurança da informação, além de como esse problema pode ser contornado facilmente e como testar suas aplicações. Lembre-se que testar aplicações sem a permissão do proprietário é crime!

@@ -2,6 +2,7 @@
 published: true
 title: Introdução ao LaTeX
 layout: post
+abstract: Esse é um documento de introdução ao LaTeX. O LaTeX é uma ferramenta de preparação de textos de alta qualidade usado normalmente na publicação de trabalhos técnicos e científicos.
 ---
 
 <!-- Include MathJax to render LaTeX. This might not work -->

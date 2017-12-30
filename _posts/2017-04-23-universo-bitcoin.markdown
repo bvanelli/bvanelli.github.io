@@ -2,6 +2,7 @@
 published: true
 title: O Universo Bitcoin 
 layout: post
+abstract: Esse artigo tem o intuito de explicar o funcionamento das criptomoedas, em especial a mais famosa delas, o Bitcoin. 
 ---
 
 > Esse artigo tem o intuito de explicar o funcionamento das criptomoedas, em especial a mais famosa delas: o [Bitcoin](https://www.bitcoin.com/). 
