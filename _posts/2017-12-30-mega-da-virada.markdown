@@ -353,6 +353,12 @@ Eu sei que apesar de tudo sua mão está tremendo de ansiedade para jogar na Meg
 <div>Preço total: <b id="preco_ac_final"></b></div>
 <div>Chance total: <b id="chance_ac_final"></b></div>
 
+<center>
+<button ng-click="vp.apostar()" class="fancybutton" style="vertical-align:middle; margin-top:1.5rem; margin-bottom:1.5rem"><span>Apostar!</span></button>
+</center>
+
+<div id="dinheiro_jogado_fora"></div>   
+
 </div>
 
 <script>
@@ -384,7 +390,7 @@ function factoryProbability (vp) {
   document.getElementById("concursos_final").innerHTML = vp.concursos.value;
   document.getElementById("preco_ac_final").innerHTML = 'R$ ' + (preco * vp.concursos.value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
   document.getElementById("chance_ac_final").innerHTML = (chance_acumulada*100).toFixed(13) + '%';
-  return chance_acumulada;
+  return [chance, chosen_cards, vp.concursos.value, vp.preco.value];
 }
 
 function FormController() {
@@ -461,7 +467,7 @@ function FormController() {
     value: 1,
     options: {
       floor: 1,
-      ceil: 1000,
+      ceil: 10000,
       logScale: true,
 	  onChange: function(id) {
         factoryProbability(vp);
@@ -484,8 +490,28 @@ function FormController() {
     vp.concursos.value = 1;
     factoryProbability(vp);
   }
+
+  vp.apostar = async function() {
+    document.getElementById("dinheiro_jogado_fora").innerHTML = '';
+    await sleep(100);
+    var ret = factoryProbability(vp);
+    var vitorias = 0;
+    for (var i = 0; i < ret[2]; i++) {
+        if(Math.random() <= ret[0])
+            vitorias = vitorias + 1;
+    }
+    var cartoes = ret[1] * ret[2];
+    var str = 'Você jogou o equivalente a <b>' + cartoes + ' ' + ((cartoes == 1) ? 'cartão' : 'cartões') + '</b>';
+    str += ', gastou <b>R$' + (cartoes * ret[3]).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + '</b> e ganhou <b>';
+    str += vitorias + ((vitorias == 1) ? ' vez' : ' vezes') + '</b>.';
+    document.getElementById("dinheiro_jogado_fora").innerHTML = str;
+  }
     
   factoryProbability(vp);
+}
+
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
 }
 
 angular.bootstrap(document.getElementById('myotherapp'), ['myotherappdom']);
