@@ -100,7 +100,7 @@ Um exemplo de um bloco real pode ser visto abaixo. Note a quantidade de zeros da
 
 Como pode ser visto na definição de bloco, cada bloco possui a hash do bloco anterior. Isso significa que todos os blocos, à partir do primeiro, estão "ligados" ao bloco anterior, em uma cadeia única. No momento em que um bloco novo é criado, ele é adicionado no *blockchain* e o próximo bloco já pode ser minerado. O minerador então recebe a recompensa por minerar o bloco mais a soma de todas as taxas de transações.
 
-<img src="https://qzprod.files.wordpress.com/2013/12/illos6.png" style="width: 100%;"/>
+<img src="https://user-images.githubusercontent.com/8211602/52563946-0d093e80-2e03-11e9-9887-f1b4917b2425.png" style="width: 100%;"/>
 
 O objetivo da Bitcoin é ter um bloco minerado a cada 10 minutos. Com o aumento do número de mineradores, também cai o tempo necessário para mineração. Para corrigir esse problema, a cada 2016 blocos, ou aproximadamente 2 semanas, a dificuldade é alterada e enviada na variável **target**.
 
