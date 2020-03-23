@@ -14,7 +14,7 @@ abstract: Esse pequeno artigo tenta explicar o poder que a linguagem Python tem 
 
 # Porque Python?
 
-O Python é uma linguagem de alto-nível interpretada concebida na década de 1980 e finalmente implementada em sua primeira versão em 1991. Desde então, ela cresceu muito em termos de número de usuários e ficou mais completa e simples de usar. O Python se baseia em alguns princípios definidos na [Zen do Python](https://mail.python.org/pipermail/python-list/1999-June/001951.html)
+O Python é uma linguagem de alto-nível interpretada concebida na década de 1980 e finalmente implementada em sua primeira versão em 1991. Desde então, ela cresceu muito em número de usuários e ficou mais completa e simples de usar. O Python se baseia em alguns princípios definidos na [Zen do Python](https://mail.python.org/pipermail/python-list/1999-June/001951.html).
 
 > The Zen of Python, by Tim Peters
 > 
@@ -29,13 +29,13 @@ O Python é uma linguagem de alto-nível interpretada concebida na década de 19
 
 Como vocês podem ver, a linguagem é focada em ser limpa, concisa e legível, sem perder (muito) a sua velocidade de execução. Afinal, em muitos casos, de que adianta você conseguir rodar algo em C/C++ que é 100x mais rápido que o equivalente em Python, se você demoraria 10x menos para escrever a solução em Python? Se você pretende executar sua solução uma vez para automatizar uma tarefa repetitiva, a rapidez de desenvolvimento é muito mais importante que o tempo de execução.
 
-De acordo com o [PYPL](https://pypl.github.io/PYPL.html) (*PopularitY of Programming Language*), que avalia a popularidade de linguagens de programação. O Python atualmente ocupa a primeira colocação como linguagem mais popular, tendo passado o Java e representando cerca de 30% das buscas no Google entre 22 linguagens. As fantásticas ferramentas incluídas em sua biblioteca padrão (dicionários, listas, operações de entrada e saída, manipulação de strings e objetos, etc) e nas bibliotecas desenvolvidas pela comunidade (plot de gráficos, ferramentas de análise de dados, ferramentas de machine learning, etc) foram as grandes responsáveis por esse sucesso, fazendo com que códigos que precisam de várias linhas em outras linguagens possam ser resumidas a uma ou duas linhas usando essas ferramentas.
+De acordo com o [PYPL](https://pypl.github.io/PYPL.html) (*PopularitY of Programming Language*), que avalia a popularidade de linguagens de programação. O Python atualmente ocupa a primeira colocação como linguagem mais popular, tendo passado o Java e representando cerca de 30% das buscas no Google entre 22 linguagens. As fantásticas ferramentas incluídas em sua biblioteca padrão (dicionários, listas, operações de entrada e saída, manipulação de strings e objetos, etc) e nas bibliotecas desenvolvidas pela comunidade (plot de gráficos, ferramentas de análise de dados e machine learning, etc) foram as grandes responsáveis por esse sucesso. Muitas vezes, códigos que precisam de várias linhas em outras linguagens possam ser resumidas a uma ou duas linhas usando essas bibliotecas.
 
-Para demonstrar o uso dessa linguagem na prática vamos tentar resolver um Sudoku usando Python.
+Para demonstrar o uso dessa linguagem na prática vamos tentar resolver um *sudoku* usando Python.
  
 # O problema
 
-O Sudoku é um jogo de lógica onde o jogador deve preencher um tabuleiro 9x9 com os números de 1 a 9 de forma que nenhuma linha, coluna ou quadrante tenha o mesmo número duas vezes. A Figura abaixo mostra um desses tabuleiros. A primeira imagem é um tabuleiro típico, onde as linhas finas dividem as células do tabuleiro e as linhas mais grossas dividem os quadrantes.
+O Sudoku é um jogo de lógica onde o jogador deve preencher um tabuleiro 9x9 com os números de 1 a 9 de forma que nenhuma linha, coluna ou quadrante tenha o mesmo número duas vezes. A Figura abaixo mostra um desses tabuleiros. A primeira imagem é um problema típico, onde as linhas finas dividem as células e as linhas mais grossas dividem os quadrantes.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg/1024px-Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg.png)
 
@@ -45,9 +45,9 @@ A segunda imagem (abaixo) é um tabuleiro resolvido, com a resolução em vermel
 
 # Resolvendo o problema
 
-Iremos dividir a resolução do problema em várias partes: definindo o problema no Python, identificando as possibilidades das células, preenchendo as células e por fim retornando os resultados. Caso o leitor queira resolver por si mesmo o problema, essa é uma boa hora para parar de ler e por a mão na massa! Como um aviso: a resolução do problema vai ser apresentada da forma mais concisa e bonita possível, que definitivamente não foi a primeira solução que eu cheguei quando resolvi o problema pela primeira vez!
+Iremos dividir a resolução do problema em várias partes: definindo o problema no Python, identificando as possibilidades das células, preenchendo as células e por fim retornando os resultados. Caso o leitor queira resolver por si mesmo o problema, essa é uma boa hora para parar de ler e por a mão na massa! Como um aviso: a resolução do problema vai ser apresentada da forma mais concisa e bonita possível, que definitivamente não foi a primeira solução que cheguei quando resolvi ele pela primeira vez!
 
-## Definido o problema
+## Definindo o problema
 
 Vamos definir primeiro o Sudoku em uma matriz. O Python (claro) já tem uma biblioteca para utilização de matrizes, o [numpy](https://numpy.org/). Como já sabemos a resposta do Sudoku da figura acima, vamos utilizá-lo como teste, preenchendo o valor zero nas posições desconhecidas.
 
@@ -81,9 +81,9 @@ Assim, quando executamos `print(sudoku)` obtemos a matriz formatada (obrigado nu
 
 ## Identificando inserções possíveis
 
-Um número só pode ser inserido em uma posição se o número não estiver na linha, coluna ou quadrante. 
+Um número só pode ser inserido em uma posição se ele ainda não estiver na linha, coluna ou quadrante. 
 
-Podemos retirar a linha de uma matriz com numpy facilmente usando `sudoku(linha, :)`. O mesmo ocurre com a coluna, usando notação semelhante, `sudoku(:, coluna)`. Para o quadrante, vamos escrever uma pequena função que retorna o quadrante inteiro.
+Podemos retirar a linha de uma matriz com numpy facilmente usando `sudoku(linha, :)`. O mesmo ocorre com a coluna, usando notação semelhante, `sudoku(:, coluna)`. Para o quadrante, vamos escrever uma pequena função que retorna o quadrante inteiro.
 
 ```python
 def quadrant(sudoku, x, y):
@@ -99,7 +99,7 @@ def is_valid(sudoku, x, y, value):
     return value not in sudoku[x, :] and value not in sudoku[:, y] and value not in quadrant(sudoku, x, y)
 ```
 
-Por fim, para retornar as possibilidades de uma determinada posição, basta testar os números de 1 a 9 na posição especificada:
+Por fim, para retornar as possibilidades de uma determinada posição, basta testar os números de 1 a 9 na coordenada especificada:
 
 ```python
 def possibilities(self, x, y):
@@ -127,7 +127,7 @@ def solver(sudoku, solutions):
 	    # resolver a posição
 ```
 
-Mas como já dizia o poeta, *"Só parte para a conversa quem não se garante na porrada."* Então, vamos usar a força bruta para resolver a posição desejada, tentando todas as possibilidades para a célula.
+Como já dizia o poeta, *"Só parte para a conversa quem não se garante na porrada."* Então, vamos usar a força bruta para resolver a posição desejada, tentando todas as possibilidades para a célula.
 
 ```python
 def solver(sudoku, solutions):
@@ -137,7 +137,7 @@ def solver(sudoku, solutions):
                 sudoku[x, y] = possibility
 ```
 
-Dada o novo sudoku com a célula já preenchida, resolvemos esse novo sudoku. Mas espere, já sabemos resolver o sudoku, basta utilizar a função `solve()` que acabamos de criar. Portanto, chamamos ela novamente
+Dada o novo sudoku com a célula já preenchida, resolvemos esse novo sudoku. Mas espere! Já sabemos resolver o sudoku, basta utilizar a função `solve()` que acabamos de criar. Portanto, chamamos ela novamente:
 
 ```python
 def solver(sudoku, solutions):
@@ -148,7 +148,7 @@ def solver(sudoku, solutions):
                 solver(sudoku, solutions)
 ```
 
-Por fim, para caso a posição não for a correta, voltamos o sudoku para a posição original colocando zero novamente na posição:
+Por fim, para caso a posição não for a correta, voltamos o sudoku para a posição original preenchendo-a com zero:
 
 ```
 def solver(sudoku, solutions):
@@ -173,7 +173,7 @@ def solver(sudoku, solutions):
             return
 ```
 
-Mas caso tenhamos passado por todas as células do tabuleiro e nenhuma delas for zero, então o sudoku foi resolvido, nesse caso, adicionamos uma cópia da solução às soluções e continuamos a busca.
+Caso tenhamos passado por todas as células do tabuleiro e nenhuma delas for zero, então o sudoku foi resolvido, nesse caso, adicionamos uma cópia da solução às soluções e continuamos a busca.
 
 ```python
 def solver(sudoku, solutions):
@@ -187,7 +187,7 @@ def solver(sudoku, solutions):
     solutions.append(sudoku.copy())
 ```
 
-E é isso! Já é possível resolver o sudoku com o algoritmo acima. Para isso, basta passar a nossa tabela que foi criada no início:
+É isso! Já é possível resolver o sudoku com o algoritmo acima. Para isso, basta passar a nossa tabela que foi criada no início:
 
 ```python
 solutions = list()
