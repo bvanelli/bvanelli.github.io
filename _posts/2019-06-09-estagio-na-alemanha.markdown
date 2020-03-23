@@ -36,7 +36,7 @@ No momento que você possuir todos os documentos, você pode [agendar um horári
 
 O contrato de trabalho é uma questão complicada. O empregador não pode fazer o contrato de trabalho sem o visto, e você não consegue tirar o visto sem um contrato de trabalho. Geralmente, isso é resolvido levando uma carta de aceite que a maioria das empresas dá, que é assinado por ambas as partes. O consulado sempre reclama mas acaba aceitando os documentos. Burocracia, na sua melhor forma!
 
-O salário mínimo para tirar o visto é de 720 euros por mês. Se você ganhar menos que isso, você precisa de outros documentos para comprovar como que você planeja se manter. Entre em contato com o consulado nesses casos para se informar qual o melhor método de comprovação. Caso tenha sido oferecido menos, tente negociar com seu empregador um salário maior enviando as instruções de visto em alemão. Ganhar menos que isso irá fazer com que você tenha que investir muito dos próprios recursos para se manter no país.
+O salário mínimo para tirar o visto é de ~~720 euros~~ 853 euros (valor atualizado em 01/09/2019)  por mês. Se você ganhar menos que isso, você precisa de outros documentos para comprovar como que você planeja se manter. Entre em contato com o consulado nesses casos para se informar qual o melhor método de comprovação. Caso tenha sido oferecido menos, tente negociar com seu empregador um salário maior enviando as instruções de visto em alemão. Ganhar menos que isso irá fazer com que você tenha que investir muito dos próprios recursos para se manter no país.
 
 ### Autorização do ZAV
 
