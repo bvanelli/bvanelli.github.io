@@ -102,11 +102,11 @@ def is_valid(sudoku, x, y, value):
 Por fim, para retornar as possibilidades de uma determinada posição, basta testar os números de 1 a 9 na coordenada especificada:
 
 ```python
-def possibilities(self, x, y):
+def possibilities(sudoku, x, y):
     possibilities = list()
-    for i in range(1, 10):
-        if self.is_valid(x, y, i):
-            possibilities.append(i)
+    for value in range(1, 10):
+        if is_valid(sudoku, x, y, value):
+            possibilities.append(value)
     return possibilities
 ```
 
