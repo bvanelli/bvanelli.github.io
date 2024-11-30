@@ -12,8 +12,8 @@ abstract: Na época de fim de ano, muitas pessoas voltam suas atenções para um
       inlineMath: [['\(','\)']]
    });
 </script>
-<script type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
 > Na época de fim de ano, muitas pessoas voltam suas atenções para um evento probabilístico chamado Mega da Virada. Mas será que elas entendem a real chance de ganharem?
