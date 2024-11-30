@@ -1,7 +1,6 @@
-version: '3'
 services:
   jekyll:
-    image: jekyll/jekyll:3.8
+    image: jekyll/jekyll:4.2.2
     command: jekyll serve -d /home/jekyll/ -s /srv/jekyll/
     ports:
       - "4000:4000"
