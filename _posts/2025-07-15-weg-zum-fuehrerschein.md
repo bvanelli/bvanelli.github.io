@@ -221,7 +221,7 @@ Há vários aplicativos na Play Store que te
 ajudam a treinar as questões, para que você tenha visto todas as questões pelo menos uma vez, e eu **recomendo 
 fortemente que você pratique basicamente todas**. Existem boas fontes de preparação também online, eu recomendo, antes
 de começar a praticar as questões, a fazer esse completíssimo 
-[curso da Fahrschule Punkt no Youtube](https://www.youtube.com/playlist?list=PLbe2OIosXJbkeqgwlE4O3CxnfEJA41gEs).
+[curso da Fahrschule Punkt no YouTube](https://www.youtube.com/playlist?list=PLbe2OIosXJbkeqgwlE4O3CxnfEJA41gEs).
 Além de ser curto e direto ao ponto, é de graça.
 
 Você pode tentar sua sorte em um [simulador online](https://www.fuehrerscheintest-online.de/fuehrerscheintest-klasse-b)
